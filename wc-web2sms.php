@@ -1,0 +1,349 @@
+<?php
+
+require_once ('vendor/autoload.php');
+use Web2sms\Sms\SendSMS;
+
+class WC_Settings_Web2sms {
+    public $slug = 'wc_settings_web2sms';
+    public $smsOrderId, $smsOrderStatus, $smsReciverName, $smsCellPhoneNr;
+    /*
+     * Bootstraps the class and hooks required actions & filters.
+     *
+     */
+    public static function init() {
+        add_filter( 'woocommerce_settings_tabs_array', __CLASS__ . '::add_settings_tab', 50 );
+        add_action( 'woocommerce_settings_tabs_settings_tab_web2sms', __CLASS__ . '::settings_tab' );
+        add_action( 'woocommerce_update_options_settings_tab_web2sms', __CLASS__ . '::update_settings' );
+    }
+    
+    
+    /*
+     * Add a new settings tab to the WooCommerce settings tabs array.
+     *
+     * @param array $settings_tabs Array of WooCommerce setting tabs & their labels, excluding the Subscription tab.
+     * @return array $settings_tabs Array of WooCommerce setting tabs & their labels, including the Subscription tab.
+     */
+    public static function add_settings_tab( $settings_tabs ) {
+        $settings_tabs['settings_tab_web2sms'] = 'SMS Settings';
+        return $settings_tabs;
+    }
+
+
+    /*
+     * Uses the WooCommerce admin fields API to output settings via the @see woocommerce_admin_fields() function.
+     *
+     * @uses woocommerce_admin_fields()
+     * @uses self::get_settings()
+     */
+    public static function settings_tab() {
+        woocommerce_admin_fields( self::get_settings() );
+    }
+
+
+    /*
+     * Uses the WooCommerce options API to save settings via the @see woocommerce_update_options() function.
+     *
+     * @uses woocommerce_update_options()
+     * @uses self::get_settings()
+     */
+    public static function update_settings() {
+        woocommerce_update_options( self::get_settings() );
+    }
+
+
+    /*
+     * Get all the settings for this plugin for @see woocommerce_admin_fields() function.
+     *
+     * @return array Array of settings for @see woocommerce_admin_fields() function.
+     */
+    public static function get_settings() {
+
+        $settings = array(
+            'section_title' => array(
+                    'name'     => 'Web2sms Section',
+                    'type'     => 'title',
+                    'desc'     => '',
+                    'id'       => 'wc_settings_tab_web2sms_section_title',
+                    'css'       => '',
+            ),
+            'active' => array(
+                    'name'		=> 'Enable / Disable',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want to use the SMS Option'.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.html?TB_iframe=true&width=400&height=770" class="thickbox">click here</a>',
+                    'default'	=> 'no',
+                    'id'        => 'wc_settings_web2sms_active',
+                    'css'       => '',
+			),
+            'apikey' => array(
+                    'name'      => 'Api key',
+                    'desc_tip'  => 'Your api key from web2sms.ro',
+                    'type'      => 'text',
+                    'desc'      => 'Copy your api key from <a href="https://www.web2sms.ro/" target="_blank">www.web2sms.ro</a>',
+                    'id'        => 'wc_settings_web2sms_apikey',
+                    'css'       => '',
+            ),
+            'secretkey' => array(
+                    'name'      => 'Secret key',
+                    'desc_tip'  => 'Your secret key from web2sms.ro',
+                    'type'      => 'text',
+                    'desc'      => 'Copy your secret key from <a href="https://www.web2sms.ro/" target="_blank">www.web2sms.ro</a>',
+                    'id'        => 'wc_settings_web2sms_secretkey',
+                    'css'       => '',
+            ),
+            'pending' => array(
+                    'name'		 => 'Pending',
+                    'desc_tip'   => '<button type="button" id="btn_pending" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		 => 'checkbox',
+                    'desc'       => 'Set it as checked if you want send SMS on Pending order',
+                    'id'         => 'wc_settings_web2sms_pending_status',
+                    'default'	 => 'no',
+                    'css'       => '',
+			),
+            'pending_sms_content' => array(
+                    'name'      => 'Pending text',
+                    'desc_tip'  => 'The sms text, what client will recive by sms on order status pending',
+                    'type'      => 'textarea',
+                    'desc'      => 'Write your sms text for pending status',
+                    'id'        => 'wc_settings_web2sms_pending_text',
+                    'css'       => '',
+            ),
+            'onhold' => array(
+                    'name'		=> 'On-Hold',
+                    'desc_tip'   => '<button type="button" id="btn_onhold" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on On-Hold order',
+                    'id'        => 'wc_settings_web2sms_onhold_status',
+                    'default'	=> 'no',
+                    'css'       => '',
+			),
+            'onhold_sms_content' => array(
+                    'name'      => 'On-Hold text',
+                    'desc_tip'  => 'The sms text, what client will recive by sms on order status On-Hold',
+                    'type'      => 'textarea',
+                    'desc'      => 'Write your sms text for On-Hold status',
+                    'id'        => 'wc_settings_web2sms_onhold_text',
+                    'css'       => '',
+            ),
+            'failed' => array(
+                    'name'		=> 'Faild',
+                    'desc_tip'   => '<button type="button" id="btn_failed" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Faild order',
+                    'id'        => 'wc_settings_web2sms_failed_status',
+                    'default'	=> 'no',
+                    'css'       => '',
+			),
+            'failed_sms_content' => array(
+                    'name'      => 'Faild text',
+                    'desc_tip'  => 'The sms text, what client will recive by sms on order status Faild',
+                    'type'      => 'textarea',
+                    'desc'      => 'Write your sms text for Faild status',
+                    'id'        => 'wc_settings_web2sms_failed_text',
+                    'css'       => '',
+            ),
+            'processing' => array(
+                    'name'		=> 'Processing',
+                    'desc_tip'   => '<button type="button" id="btn_processing" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Processing order',
+                    'id'        => 'wc_settings_web2sms_processing_status',
+                    'default'	=> 'no',
+                    'css'       => '',
+			),
+            'processing_sms_content' => array(
+                    'name'      => 'Processing text',
+                    'desc_tip'  => 'The sms text, what client will recive by sms on order status processing',
+                    'type'      => 'textarea',
+                    'desc'      => 'Write your sms text for Processing status',
+                    'id'        => 'wc_settings_web2sms_processing_text',
+                    'css'       => '',
+            ),
+            'cancelled' => array(
+                    'name'		=> 'Cancelled',
+                    'desc_tip'  => '<button type="button" id="btn_cancelled" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Cancelled order',
+                    'id'        => 'wc_settings_web2sms_cancelled_status',
+                    'default'	=> 'no',
+                    'css'       => '',
+			),
+            'cancelled_sms_content' => array(
+                    'name'      => 'Cancelled text',
+                    'desc_tip'  => 'The sms text, what client will recive by sms on order status cancelled',
+                    'type'      => 'textarea',
+                    'desc'      => 'Write your sms text for Cancelled status',
+                    'id'        => 'wc_settings_web2sms_cancelled_text',
+                    'css'       => '',
+            ),
+            'completed' => array(
+                    'name'		=> 'Completed',
+                    'desc_tip'  => '<button type="button" id="btn_completed" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Completed order',
+                    'id'        => 'wc_settings_web2sms_completed_status',
+                    'default'	=> 'no',
+                    'css'       => '',
+			),
+            'completed_sms_content' => array(
+                    'name'      => 'Completed text',
+                    'desc_tip'  => 'The sms text, what client will recive by sms on order status Completed',
+                    'type'      => 'textarea',
+                    'desc'      => 'Write your sms text for Completed status',
+                    'id'        => 'wc_settings_web2sms_completed_text',
+                    'css'       => '',
+            ),
+            'refunded' => array(
+                    'name'		=> 'Refunded',
+                    'desc_tip'  => '<button type="button" id="btn_refunded" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Refunded order',
+                    'id'        => 'wc_settings_web2sms_refunded_status',
+                    'default'	=> 'no',
+                    'css'       => '',
+			),
+            'refunded_sms_content' => array(
+                    'name'      => 'Refunded text',
+                    'desc_tip'  => 'The sms text, what client will recive by sms on order status Refunded',
+                    'type'      => 'textarea',
+                    'desc'      => 'Write your sms text for Refunded status',
+                    'id'        => 'wc_settings_web2sms_refunded_text',
+                    'css'       => '',
+            ),
+            'section_end' => array(
+                 'type' => 'sectionend',
+                 'id' => 'wc_settings_tab_web2sms_section_end'
+            )
+        );
+
+        return apply_filters( 'wc_settings_web2sms_settings', $settings );
+    }
+
+    public function getSettingOption($option) {
+        switch ($option) {
+            case 'active':
+            case 'apikey':
+            case 'secretkey':
+            case 'pending_status':
+            case 'pending_text':
+            case 'onhold_status':
+            case 'onhold_text':
+            case 'failed_status':
+            case 'failed_text':
+            case 'processing_status':
+            case 'processing_text':
+            case 'cancelled_status':
+            case 'cancelled_text':
+            case 'completed_status':
+            case 'completed_text':
+            case 'refunded_status':
+            case 'refunded_text':
+                return get_option($this->slug.'_'.$option, array());
+                break;
+            default:
+            throw new \Exception('Web2sms -> '.$option.' not exist!');
+        }
+    }
+
+    public function isActive() {
+        $active = $this->getSettingOption('active') == 'yes' ? true : false;
+        if($active) {
+            if($this->hasApikey() && $this->hasSecretkey()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function hasApikey() {
+        return !empty($this->getSettingOption('apikey')) ? true : false;
+    }
+
+    public function hasSecretkey() {
+        return !empty($this->getSettingOption('secretkey')) ? true : false;
+    }
+
+
+}
+
+$ntpWeb2sms = new WC_Settings_Web2sms();
+$ntpWeb2sms->init();
+
+
+// add_action( 'woocommerce_order_status_completed', 'Web2smsOrderStatusCompleted', 10, 1);
+// function Web2smsOrderStatusCompleted($order_id) {
+//     die("Completed");
+// }
+
+add_action('woocommerce_order_status_changed', 'woo_order_status_change_custom', 10, 1);
+function woo_order_status_change_custom($order_id) {
+    $order = wc_get_order( $order_id );
+    $smsOrderId = $order_id;
+    $smsOrderStatus = $order->status;
+    $smsReciverName = $order->get_billing_first_name();
+    $smsCellPhoneNr = $order->get_billing_phone();
+
+    // setLog("---------------".rand(0,100));
+    // setLog($order->status);
+    // setLog("---------------".rand(0,100));
+    // setLog($order_id);
+    // setLog("---------------".rand(0,100));
+    // setLog($order->get_billing_phone());
+    // setLog("---------------".rand(0,100));
+    // setLog($order->get_billing_first_name());
+    // setLog("---------------".rand(0,100));
+    // setLog("Status changed".rand(0,100));
+    // Sens SMS
+    sendSMS($smsOrderId, $smsOrderStatus, $smsReciverName, $smsCellPhoneNr);
+    // setLog($data = $smsOrderId.' - '.$smsOrderStatus.' - '.$smsReciverName.' - '.$smsCellPhoneNr);
+}
+
+
+function sendSMS($smsOrderId, $smsOrderStatus, $smsReciverName, $smsCellPhoneNr){
+    
+    /////////////////////////
+    
+
+    $sendSMS = new SendSMS();
+    $sendSMS->accountType = 'prepaid';                                                  // postpaid | prepaid
+
+    /**
+     * Postpaid account
+     */
+    $sendSMS->apiKey     = '';                  // Your api KEY
+    $sendSMS->secretKey  = '';  // Your secret KEY
+
+    $smsBody = sprintf("Dear %s The order nr #%d status changed to '%s'",$smsReciverName, $smsOrderId,$smsOrderStatus);
+    $smsRecipient = $smsCellPhoneNr;
+
+    $sendSMS->messages[]  = [
+                        'sender'            => null,                                    // who send the SMS             // Optional
+                        'recipient'         => $smsRecipient,                            // who receive the SMS          // Mandatory
+                        // 'recipient'         => '0770997789',                         // who receive the SMS          // Mandatory
+                        'body'              => $smsBody.rand(0,1000),                   // The actual text of SMS       // Mandatory
+                        'scheduleDatetime'  => null,                                    // Date & Time to send SMS      // Optional
+                        'validityDatetime'  => null,                                    // Date & Time of expire SMS    // Optional
+                        'callbackUrl'       => 'https://yourdomain.ro/web2sms/',        // Call back                    // Optional    
+                        'userData'          => null,                                    // User data                    // Optional
+                        'visibleMessage'    => false                                    // false -> show the Org Msg & True is not showing the Org Msg           // Optional
+                        ];
+
+    $sendSMS->setRequest();
+    $result = $sendSMS->sendSMS();
+    print_r($result);
+    setLog($result);
+    setLog("----Send SMS by Function ---".rand(0,100)."\n");
+    /////////////////////////
+    
+}
+
+
+
+add_thickbox();
+
+function setLog($data) {
+    //Log the data to your file using file_put_contents.
+    file_put_contents("/home/navid/Projects/NTP/web2sms/wp-web2sms/navid.txt", print_r($data, true)."\n", FILE_APPEND);
+}

@@ -355,6 +355,9 @@ class netopiapayments extends WC_Payment_Gateway {
 					</script>
 				</form>';
 			} catch (\Exception $e) {
+				// echo "<pre>";
+				// print_r($e);
+				// echo "</pre>";
 				// throw $th;
 				echo '<p><i style="color:red">Asigura-te ca ai incarcat toate cele 4 chei de securitate, 2 pentru mediul live, 2 pentru mediul sandbox! Citeste cu atentie instructiunile din manual!</i></p>
 					<p style="font-size:small">Ai in continuare probleme? Trimite-ne doua screenshot-uri la <a href="mailto:implementare@netopia.ro">implementare@netopia.ro</a>, unul cu setarile metodei de plata din adminul wordpress si unul cu locatia in care ai incarcat cheile (de preferat sa se vada denumirea completa a cheilor si calea completa a locatiei)</p>';
