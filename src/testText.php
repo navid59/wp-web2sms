@@ -1,3 +1,3 @@
 <?php
-echo "AAAAAAAA";
+echo "AAAAAAAA".rand(1,1000);
 ?>
