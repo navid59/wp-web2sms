@@ -92,7 +92,7 @@ class WC_Settings_Web2sms {
             ),
             'pending' => array(
                     'name'		 => 'Pending',
-                    'desc_tip'   => '<button type="button" id="btn_pending" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.html?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
+                    'desc_tip'   => '<button type="button" id="btn_pending" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
                     'type'		 => 'checkbox',
                     'desc'       => 'Set it as checked if you want send SMS on Pending order',
                     'id'         => 'wc_settings_web2sms_pending_status',
@@ -109,7 +109,7 @@ class WC_Settings_Web2sms {
             ),
             'onhold' => array(
                     'name'		=> 'On-Hold',
-                    'desc_tip'   => '<button type="button" id="btn_onhold" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.html?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
+                    'desc_tip'   => '<button type="button" id="btn_onhold" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a id="link_onhold" href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=false&width=400&height=770" class="thickbox" title="Mobile view" inlineId=examplePopup1" type="button"  value="Show Thickbox Example Pop-up 1">AAA See how your SMS looks like</a>',
                     'type'		=> 'checkbox',
                     'desc'      => 'Set it as checked if you want send SMS on On-Hold order',
                     'id'        => 'wc_settings_web2sms_on-hold_status',
@@ -126,7 +126,7 @@ class WC_Settings_Web2sms {
             ),
             'failed' => array(
                     'name'		=> 'Faild',
-                    'desc_tip'   => '<button type="button" id="btn_failed" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.html?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
+                    'desc_tip'   => '<button type="button" id="btn_failed" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
                     'type'		=> 'checkbox',
                     'desc'      => 'Set it as checked if you want send SMS on Faild order',
                     'id'        => 'wc_settings_web2sms_failed_status',
@@ -143,7 +143,7 @@ class WC_Settings_Web2sms {
             ),
             'processing' => array(
                     'name'		=> 'Processing',
-                    'desc_tip'   => '<button type="button" id="btn_processing" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.html?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
+                    'desc_tip'   => '<button type="button" id="btn_processing" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
                     'type'		=> 'checkbox',
                     'desc'      => 'Set it as checked if you want send SMS on Processing order',
                     'id'        => 'wc_settings_web2sms_processing_status',
@@ -160,7 +160,7 @@ class WC_Settings_Web2sms {
             ),
             'cancelled' => array(
                     'name'		=> 'Cancelled',
-                    'desc_tip'  => '<button type="button" id="btn_cancelled" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.html?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
+                    'desc_tip'  => '<button type="button" id="btn_cancelled" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
                     'type'		=> 'checkbox',
                     'desc'      => 'Set it as checked if you want send SMS on Cancelled order',
                     'id'        => 'wc_settings_web2sms_cancelled_status',
@@ -169,7 +169,7 @@ class WC_Settings_Web2sms {
 			),
             'cancelled_sms_content' => array(
                     'name'      => 'Cancelled text',
-                    'desc_tip'  => '<button type="button" id="btn_completed" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.html?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
+                    'desc_tip'  => '<button type="button" id="btn_completed" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
                     'type'		=> 'checkbox',
                     'desc'      => 'Set it as checked if you want send SMS on Completed order',
                     'id'        => 'wc_settings_web2sms_completed_status',
@@ -186,7 +186,7 @@ class WC_Settings_Web2sms {
             ),
             'refunded' => array(
                     'name'		=> 'Refunded',
-                    'desc_tip'  => '<button type="button" id="btn_refunded" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.html?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
+                    'desc_tip'  => '<button type="button" id="btn_refunded" class="btn btn-lg btn-primary">See how looks</button>'.' | '.' <a href="../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770" class="thickbox">See how your SMS looks like</a>',
                     'type'		=> 'checkbox',
                     'desc'      => 'Set it as checked if you want send SMS on Refunded order',
                     'id'        => 'wc_settings_web2sms_refunded_status',
@@ -286,6 +286,7 @@ class WC_Settings_Web2sms {
 $ntpWeb2sms = new WC_Settings_Web2sms();
 $ntpWeb2sms->init();
 
+
 add_action('woocommerce_order_status_changed', 'woo_order_status_change_custom', 10, 1);
 function woo_order_status_change_custom($order_id) {
     $web2sms = new WC_Settings_Web2sms();   
@@ -296,7 +297,7 @@ function woo_order_status_change_custom($order_id) {
     $smsReciverName = $order->get_billing_first_name();
     $smsCellPhoneNr = $order->get_billing_phone();
     $smsContent     = $web2sms->getSettingOption($smsOrderStatus.'_text');
-    
+
     // die($smsContent);
     
     /**

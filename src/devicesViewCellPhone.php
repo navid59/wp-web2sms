@@ -55,7 +55,11 @@
 
 <div class="smartphone">
   <div class="content">
-    <iframe src="testText.php" style="width:100%;border:none;height:100%" />
+    <?php
+    global $wp;
+    echo home_url( $wp->request );
+    ?>
+    <!-- <iframe src="testText.php" style="width:100%;border:none;height:100%" /> -->
   </div>
 </div>
 
