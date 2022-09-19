@@ -71,7 +71,14 @@ function smsCalculation(str, isStandard) {
     console.log(isStandard);
     console.log(smsNr);
     
-    tb_show("Mobile view", "../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770");
+    var data = {
+        'action': 'my_action',
+        'str': str
+    };
+    // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+    jQuery.post(ajaxurl, data, function(response) {
+        tb_show("Mobile view", "../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770");
+    });
     
 }
 

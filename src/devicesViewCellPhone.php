@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,24 +50,27 @@
   height: 640px;
   background: white;
 }
+
+/* The screen (or content) of the device */
+.smartphone .content {
+  width: 260px;
+  height: auto;
+  background: rgba(0, 0, 0, 0.1);;
+  margin: 35px;
+  text-align: left;
+  border-radius: 5px;
+  padding: 10px;
+}
 </style>
 </head>
 <body>
 
 <div class="smartphone">
   <div class="content">
-    <?php
-    var_dump($_REQUEST);
-    echo "<br>";
-    var_dump($_GET);
-      echo "<br>";
-    var_dump($_SESSION);
-      echo "<br>";
-    // die("ahahah");
-      echo "hear is ouside of Wordpress";
-    ?>
-    <div id="placeOfDynamicContent">
-      ssssssssss
+    <div class="subcontent">
+      <?php
+      echo ($_SESSION['smsStrContent']);
+      ?>
     </div>
   </div>
 </div>

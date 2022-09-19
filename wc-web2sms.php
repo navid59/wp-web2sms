@@ -383,10 +383,8 @@ function my_action_javascript() { ?>
 
 add_action( 'wp_ajax_my_action', 'my_action' );
 function my_action() {
-	global $wpdb; // this is how you get access to the database
-	$whatever = intval( $_POST['whatever'] );
-	$whatever += rand(0,100);
-        $strContent = '<div class="smartphone"><div class="content"><div id="placeOfDynamicContent">XX '.$whatever.' XX</div></div></div>';
-        echo $strContent;
+    session_start();
+	global $wpdb;
+    $_SESSION['smsStrContent']   = $_POST['str'];
 	wp_die(); // this is required to terminate immediately and return a proper response
 }
