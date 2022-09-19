@@ -56,10 +56,18 @@
 <div class="smartphone">
   <div class="content">
     <?php
-    global $wp;
-    echo home_url( $wp->request );
+    var_dump($_REQUEST);
+    echo "<br>";
+    var_dump($_GET);
+      echo "<br>";
+    var_dump($_SESSION);
+      echo "<br>";
+    // die("ahahah");
+      echo "hear is ouside of Wordpress";
     ?>
-    <!-- <iframe src="testText.php" style="width:100%;border:none;height:100%" /> -->
+    <div id="placeOfDynamicContent">
+      ssssssssss
+    </div>
   </div>
 </div>
 

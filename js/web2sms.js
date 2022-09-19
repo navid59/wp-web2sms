@@ -9,7 +9,6 @@ jQuery(document).ready(function(){
         
         isStandard = isStandardTxt(pendingStr);
         smsCalculation(pendingStr, isStandard);
-        // jQuery("#myModal").modal('show');
     });
 
     jQuery("#btn_onhold").click(function(){
@@ -20,27 +19,22 @@ jQuery(document).ready(function(){
     
     jQuery("#btn_failed").click(function(){
         alert ('Failed');
-        // jQuery("#myModal").modal('show');
     });
     
     jQuery("#btn_processing").click(function(){
         alert ('Processing');
-        // jQuery("#myModal").modal('show');
     });
     
     jQuery("#btn_cancelled").click(function(){
         alert ('Cancelled');
-        // jQuery("#myModal").modal('show');
     });
     
     jQuery("#btn_completed").click(function(){
         alert ('Completed');
-        // jQuery("#myModal").modal('show');
     });
     
     jQuery("#btn_refunded").click(function(){
         alert ('Refunded');
-        // jQuery("#myModal").modal('show');
     });
 });
 
@@ -76,6 +70,9 @@ function smsCalculation(str, isStandard) {
     console.log(str);
     console.log(isStandard);
     console.log(smsNr);
+    
+    tb_show("Mobile view", "../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770");
+    
 }
 
 function isStandardTxt(str) {
@@ -99,3 +96,4 @@ function isGsm7bit(letter) {
 function isEmpty(val){
     return (val === undefined || val == null || val.length <= 0) ? true : false;
 }
+
