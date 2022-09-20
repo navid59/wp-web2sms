@@ -349,16 +349,15 @@ function sendSMS($smsOrderId, $smsOrderStatus, $smsReciverName, $smsCellPhoneNr,
                         'visibleMessage'    => false                                    // false -> show the Org Msg & True is not showing the Org Msg           // Optional
                         ];
 
-    // $sendSMS->setRequest();
-    // $result = $sendSMS->sendSMS();
+    $sendSMS->setRequest();
+    $result = $sendSMS->sendSMS();
     
-    // setLog("---- ******************* ---".rand(0,100)."\n");
-    // setLog($result);
+    setLog("---- ******************* ---".rand(0,100)."\n");
+    setLog($result);
     
     
     setLog($sendSMS);
     setLog("---- ------------------- ---".rand(0,100)."\n");
-    /////////////////////////
     
 }
 
