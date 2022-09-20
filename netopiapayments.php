@@ -56,6 +56,6 @@ function web2sms_init() {
 	// Include our Web2sms Class
 	include_once( 'wc-web2sms.php' );
 
-	wp_enqueue_script( 'web2smsjs', plugin_dir_url( __FILE__ ) . 'js/web2sms.js',array('jquery'),'1.0' ,true);
+	wp_enqueue_script( 'web2smsjs', plugin_dir_url( __FILE__ ) . 'js/web2sms.js',array('jquery'),'1.0.1' ,true);
 	wp_enqueue_style( 'web2smscss', plugin_dir_url( __FILE__ ) . 'css/web2sms.css',array(),'10' ,false);
 }

@@ -6,35 +6,74 @@ jQuery(document).ready(function(){
             return false;
         }
         
-        
         isStandard = isStandardTxt(pendingStr);
         smsCalculation(pendingStr, isStandard);
     });
 
     jQuery("#btn_onhold").click(function(){
-        alert ('On-Hold');
-    //     const article = document.getElementById("btn_onhold")
-    //   console.log(article.dataset.smscontent);
+        pendingStr = jQuery('#wc_settings_web2sms_on-hold_text').val();
+        if(isEmpty(pendingStr)) {
+            console.log('Is empty');
+            return false;
+        }
+        
+        isStandard = isStandardTxt(pendingStr);
+        smsCalculation(pendingStr, isStandard);
     });
     
     jQuery("#btn_failed").click(function(){
-        alert ('Failed');
+        pendingStr = jQuery('#wc_settings_web2sms_failed_text').val();
+        if(isEmpty(pendingStr)) {
+            console.log('Is empty');
+            return false;
+        }
+        
+        isStandard = isStandardTxt(pendingStr);
+        smsCalculation(pendingStr, isStandard);
     });
     
     jQuery("#btn_processing").click(function(){
-        alert ('Processing');
+        pendingStr = jQuery('#wc_settings_web2sms_processing_text').val();
+        if(isEmpty(pendingStr)) {
+            console.log('Is empty');
+            return false;
+        }
+        
+        isStandard = isStandardTxt(pendingStr);
+        smsCalculation(pendingStr, isStandard);
     });
     
     jQuery("#btn_cancelled").click(function(){
-        alert ('Cancelled');
+        pendingStr = jQuery('#wc_settings_web2sms_cancelled_text').val();
+        if(isEmpty(pendingStr)) {
+            console.log('Is empty');
+            return false;
+        }
+        
+        isStandard = isStandardTxt(pendingStr);
+        smsCalculation(pendingStr, isStandard);
     });
     
     jQuery("#btn_completed").click(function(){
-        alert ('Completed');
+        pendingStr = jQuery('#wc_settings_web2sms_completed_text').val();
+        if(isEmpty(pendingStr)) {
+            console.log('Is empty');
+            return false;
+        }
+        
+        isStandard = isStandardTxt(pendingStr);
+        smsCalculation(pendingStr, isStandard);
     });
     
     jQuery("#btn_refunded").click(function(){
-        alert ('Refunded');
+        pendingStr = jQuery('#wc_settings_web2sms_refunded_text').val();
+        if(isEmpty(pendingStr)) {
+            console.log('Is empty');
+            return false;
+        }
+        
+        isStandard = isStandardTxt(pendingStr);
+        smsCalculation(pendingStr, isStandard);
     });
 });
 
