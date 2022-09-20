@@ -3,6 +3,7 @@ jQuery(document).ready(function(){
         pendingStr = jQuery('#wc_settings_web2sms_pending_text').val();
         if(isEmpty(pendingStr)) {
             console.log('Is empty');
+            toastr.error('Please, enter a SMS content for pending status!', 'Error!');
             return false;
         }
         
@@ -14,6 +15,7 @@ jQuery(document).ready(function(){
         pendingStr = jQuery('#wc_settings_web2sms_on-hold_text').val();
         if(isEmpty(pendingStr)) {
             console.log('Is empty');
+            toastr.error('Please, enter a SMS content for On-Hols status!', 'Error!');
             return false;
         }
         
@@ -25,6 +27,7 @@ jQuery(document).ready(function(){
         pendingStr = jQuery('#wc_settings_web2sms_failed_text').val();
         if(isEmpty(pendingStr)) {
             console.log('Is empty');
+            toastr.error('Please, enter a SMS content for failed status!', 'Error!');
             return false;
         }
         
@@ -36,6 +39,7 @@ jQuery(document).ready(function(){
         pendingStr = jQuery('#wc_settings_web2sms_processing_text').val();
         if(isEmpty(pendingStr)) {
             console.log('Is empty');
+            toastr.error('Please, enter a SMS content for processing status!', 'Error!');
             return false;
         }
         
@@ -47,6 +51,7 @@ jQuery(document).ready(function(){
         pendingStr = jQuery('#wc_settings_web2sms_cancelled_text').val();
         if(isEmpty(pendingStr)) {
             console.log('Is empty');
+            toastr.error('Please, enter a SMS content for cancelled status!', 'Error!');
             return false;
         }
         
@@ -58,6 +63,7 @@ jQuery(document).ready(function(){
         pendingStr = jQuery('#wc_settings_web2sms_completed_text').val();
         if(isEmpty(pendingStr)) {
             console.log('Is empty');
+            toastr.error('Please, enter a SMS content for completed status!', 'Error!');
             return false;
         }
         
@@ -69,6 +75,7 @@ jQuery(document).ready(function(){
         pendingStr = jQuery('#wc_settings_web2sms_refunded_text').val();
         if(isEmpty(pendingStr)) {
             console.log('Is empty');
+            toastr.error('Please, enter a SMS content for refunded status!', 'Error!');
             return false;
         }
         
@@ -118,6 +125,8 @@ function smsCalculation(str, isStandard) {
     jQuery.post(ajaxurl, data, function(response) {
         tb_show("Mobile view", "../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770");
     });
+
+    toastr.success('<b>SMS length</b>: '+str.length + '<br><b>Standard Text</b>: ' + isStandard + '<br><b>SMS nr</b>: ' + smsNr);
     
 }
 
