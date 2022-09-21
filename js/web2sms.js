@@ -126,7 +126,7 @@ function smsCalculation(str, isStandard) {
         tb_show("Mobile view", "../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770");
     });
 
-    toastr.success('<b>SMS length</b>: '+str.length + '<br><b>Standard Text</b>: ' + isStandard + '<br><b>SMS nr</b>: ' + smsNr);
+    toastr.success('<b>SMS length</b>: ~'+str.length + '<br><b>Standard Text</b> : ' + isStandard + '<br><b>SMS nr</b> : ~' + smsNr);
     
 }
 
