@@ -61,7 +61,10 @@ class WC_Settings_Web2sms {
             'section_title' => array(
                     'name'     => 'Web2sms Section',
                     'type'     => 'title',
-                    'desc'     => '',
+                    'desc'     => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                   Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                   It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                                   It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.<br><br> and more recently with desktop publishing software <a href="#" id="show_documention">View my inline content!</a>like Aldus PageMaker including versions of Lorem Ipsum.',
                     'id'       => 'wc_settings_tab_web2sms_section_title',
                     'css'       => '',
             ),
@@ -98,13 +101,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'pending' => array(
-                'name'		 => 'Pending',
-                'desc_tip'   => '<button type="button" id="btn_pending" class="btn btn-lg btn-primary">See how looks</button>',
-                'type'		 => 'checkbox',
-                'desc'       => 'Set it as checked if you want send SMS on Pending order',
-                'id'         => 'wc_settings_web2sms_pending_status',
-                'default'	 => 'no',
-                'css'       => '',
+                    'name'		 => 'Pending',
+                    'desc_tip'   => '<button type="button" id="btn_pending" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		 => 'checkbox',
+                    'desc'       => 'Set it as checked if you want send SMS on Pending order',
+                    'id'         => 'wc_settings_web2sms_pending_status',
+                    'default'	 => 'no',
+                    'css'       => '',
             ),
             'onhold_sms_content' => array(
                     'name'      => 'On-Hold text',
@@ -115,13 +118,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'onhold' => array(
-                'name'		=> 'On-Hold',
-                'desc_tip'   => '<button type="button" id="btn_onhold" class="btn btn-lg btn-primary">See how looks</button>',
-                'type'		=> 'checkbox',
-                'desc'      => 'Set it as checked if you want send SMS on On-Hold order',
-                'id'        => 'wc_settings_web2sms_on-hold_status',
-                'default'	=> 'no',
-                'css'       => '',
+                    'name'		=> 'On-Hold',
+                    'desc_tip'   => '<button type="button" id="btn_onhold" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on On-Hold order',
+                    'id'        => 'wc_settings_web2sms_on-hold_status',
+                    'default'	=> 'no',
+                    'css'       => '',
             ),
             'failed_sms_content' => array(
                     'name'      => 'Faild text',
@@ -131,13 +134,13 @@ class WC_Settings_Web2sms {
                     'id'        => 'wc_settings_web2sms_failed_text',
                     'css'       => '',
             ),'failed' => array(
-                'name'		=> 'Faild',
-                'desc_tip'   => '<button type="button" id="btn_failed" class="btn btn-lg btn-primary">See how looks</button>',
-                'type'		=> 'checkbox',
-                'desc'      => 'Set it as checked if you want send SMS on Faild order',
-                'id'        => 'wc_settings_web2sms_failed_status',
-                'default'	=> 'no',
-                'css'       => '',
+                    'name'		=> 'Faild',
+                    'desc_tip'   => '<button type="button" id="btn_failed" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Faild order',
+                    'id'        => 'wc_settings_web2sms_failed_status',
+                    'default'	=> 'no',
+                    'css'       => '',
             ),
             'processing_sms_content' => array(
                     'name'      => 'Processing text',
@@ -148,13 +151,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'processing' => array(
-                'name'		=> 'Processing',
-                'desc_tip'   => '<button type="button" id="btn_processing" class="btn btn-lg btn-primary">See how looks</button>',
-                'type'		=> 'checkbox',
-                'desc'      => 'Set it as checked if you want send SMS on Processing order',
-                'id'        => 'wc_settings_web2sms_processing_status',
-                'default'	=> 'no',
-                'css'       => '',
+                    'name'		=> 'Processing',
+                    'desc_tip'   => '<button type="button" id="btn_processing" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Processing order',
+                    'id'        => 'wc_settings_web2sms_processing_status',
+                    'default'	=> 'no',
+                    'css'       => '',
             ),
             'cancelled_sms_content' => array(
                     'name'      => 'Cancelled text',
@@ -166,13 +169,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
 			),
             'cancelled' => array(
-                'name'		=> 'Cancelled',
-                'desc_tip'  => '<button type="button" id="btn_cancelled" class="btn btn-lg btn-primary">See how looks</button>',
-                'type'		=> 'checkbox',
-                'desc'      => 'Set it as checked if you want send SMS on Cancelled order',
-                'id'        => 'wc_settings_web2sms_cancelled_status',
-                'default'	=> 'no',
-                'css'       => '',
+                    'name'		=> 'Cancelled',
+                    'desc_tip'  => '<button type="button" id="btn_cancelled" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Cancelled order',
+                    'id'        => 'wc_settings_web2sms_cancelled_status',
+                    'default'	=> 'no',
+                    'css'       => '',
             ),
             'completed_sms_content' => array(
                     'name'      => 'Completed text',
@@ -183,13 +186,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'completed' => array(
-                'name'		=> 'Completed',
-                'desc_tip'  => '<button type="button" id="btn_completed" class="btn btn-lg btn-primary">See how looks</button>',
-                'type'		=> 'checkbox',
-                'desc'      => 'Set it as checked if you want send SMS on Completed order',
-                'id'        => 'wc_settings_web2sms_completed_status',
-                'default'	=> 'no',
-                'css'       => '',
+                    'name'		=> 'Completed',
+                    'desc_tip'  => '<button type="button" id="btn_completed" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Completed order',
+                    'id'        => 'wc_settings_web2sms_completed_status',
+                    'default'	=> 'no',
+                    'css'       => '',
             ),
             'refunded_sms_content' => array(
                     'name'      => 'Refunded text',
@@ -200,13 +203,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'refunded' => array(
-                'name'		=> 'Refunded',
-                'desc_tip'  => '<button type="button" id="btn_refunded" class="btn btn-lg btn-primary">See how looks</button>',
-                'type'		=> 'checkbox',
-                'desc'      => 'Set it as checked if you want send SMS on Refunded order',
-                'id'        => 'wc_settings_web2sms_refunded_status',
-                'default'	=> 'no',
-                'css'       => '',
+                    'name'		=> 'Refunded',
+                    'desc_tip'  => '<button type="button" id="btn_refunded" class="btn btn-lg btn-primary">See how looks</button>',
+                    'type'		=> 'checkbox',
+                    'desc'      => 'Set it as checked if you want send SMS on Refunded order',
+                    'id'        => 'wc_settings_web2sms_refunded_status',
+                    'default'	=> 'no',
+                    'css'       => '',
             ),
             'section_end' => array(
                  'type' => 'sectionend',
@@ -374,8 +377,8 @@ function setLog($data) {
     file_put_contents(plugin_dir_path( __FILE__ )."logs/smslog.log", print_r($data, true)."\n", FILE_APPEND);
 }
 
-add_action( 'wp_ajax_my_action', 'my_action' );
-function my_action() {
+add_action( 'wp_ajax_sms_content_calculation', 'sms_content_calculation' );
+function sms_content_calculation() {
     session_start();
 	global $wpdb;
     $strFind = array("%ordId%", "%name%", "%lastname%", "%email%");

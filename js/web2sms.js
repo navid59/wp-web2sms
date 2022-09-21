@@ -82,6 +82,10 @@ jQuery(document).ready(function(){
         isStandard = isStandardTxt(pendingStr);
         smsCalculation(pendingStr, isStandard);
     });
+
+    jQuery("#show_documention").click(function(){
+        web2smsDocumention();
+    });
 });
 
 /**
@@ -118,7 +122,7 @@ function smsCalculation(str, isStandard) {
     console.log(smsNr);
     
     var data = {
-        'action': 'my_action',
+        'action': 'sms_content_calculation',
         'str': str
     };
     // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
@@ -152,3 +156,6 @@ function isEmpty(val){
     return (val === undefined || val == null || val.length <= 0) ? true : false;
 }
 
+function web2smsDocumention() {
+    tb_show("Documention", "../wp-content/plugins/netopia-payments-payment-gateway/src/web2smsDocumention.php?TB_iframe=true&width=700&height=770");
+}
