@@ -387,3 +387,35 @@ function sms_content_calculation() {
     $_SESSION['smsStrContent']   = $strContent;
 	wp_die(); // this is required to terminate immediately and return a proper response
 }
+
+// See http://codex.wordpress.org/Plugin_API/Filter_Reference/cron_schedules
+add_filter( 'cron_schedules', 'web2sms_cart_notify' );
+function web2sms_cart_notify( $schedules ) {
+    $schedules['every_five_minutes'] = array(
+            'interval'  => 60 * 1,
+            'display'   => __( 'Every 5 Minutes', 'textdomain' )
+    );
+    return $schedules;
+}
+
+// Schedule an action if it's not already scheduled
+if ( ! wp_next_scheduled( 'web2sms_cart_notify' ) ) {
+    wp_schedule_event( time(), 'every_five_minutes', 'web2sms_cart_notify' );
+}
+
+// Hook into that action that'll fire every five minutes
+add_action( 'web2sms_cart_notify', 'every_five_minutes_event_func' );
+function every_five_minutes_event_func() {
+    global $woocommerce;
+    // do something here you can perform anything
+    setLog("---- WooComerce --- ---- cart recovery ---- ----".rand(0,100)."\n");
+    setLog("---- Notify URL ---- 2 ---- ".rand(0,100)." ---- ".print_r(WC()->api_request_url( 'netopiapayments' ), true)."\n");
+    
+}
+
+/**
+ * Validate mobil number before send SMS
+ */
+function validateTelNumber() {
+
+}
