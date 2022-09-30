@@ -419,3 +419,132 @@ function every_five_minutes_event_func() {
 function validateTelNumber() {
 
 }
+
+// Actions to be done on cart update.
+add_action( 'woocommerce_add_to_cart', 'web2sms_store_cart');
+add_action( 'woocommerce_cart_item_removed', 'web2sms_cart_item_removed');
+add_action( 'woocommerce_cart_item_restored', 'web2sms_cart_item_restored');
+add_action( 'woocommerce_after_cart_item_quantity_update', 'web2sms_quantity_update_cart');
+add_action( 'woocommerce_calculate_totals', 'web2sms_calculate_totals_cart');
+add_action( 'woocommerce_after_checkout_validation', 'web2sms_checkout_validation_cart');
+
+
+
+add_action( 'woocommerce_add_to_cart', 'web2sms_store_abandoned_cart');
+add_action( 'woocommerce_cart_item_removed', 'web2sms_store_abandoned_cart');
+add_action( 'woocommerce_cart_item_restored', 'web2sms_store_abandoned_cart');
+add_action( 'woocommerce_after_cart_item_quantity_update', 'web2sms_store_abandoned_cart');
+add_action( 'woocommerce_calculate_totals', 'web2sms_store_abandoned_cart');
+add_action( 'woocommerce_after_checkout_validation', 'web2sms_store_abandoned_cart');
+
+
+
+function web2sms_store_abandoned_cart() {
+    
+    global $wpdb,$woocommerce;
+	$currentTime = current_time( 'timestamp' );
+    
+
+    $cart_cut_off_time = 60 * 1; // 60 Sec
+    if ( is_user_logged_in() ) {
+        $userType  = "registered";
+        $userId   = get_current_user_id();
+		$userMeta = get_user_meta( $userId, '', false );
+
+        
+        $userInfo['nickname'] = $userMeta['nickname'][0];
+        $userInfo['billing_first_name'] = $userMeta['billing_first_name'][0];
+        $userInfo['billing_last_name'] = $userMeta['billing_last_name'][0];
+        $userInfo['billing_email'] = $userMeta['billing_email'][0];
+        $userInfo['billing_phone'] = $userMeta['billing_phone'][0];
+        $userInfo = wp_json_encode($userInfo);
+
+        setLog("User Info : ".print_r($userInfo, true)." -> ".rand(0,100)."\n");
+
+        /**
+         * Verify if cart is already monitoring
+         */
+        $results = $wpdb->get_results( 
+                        $wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'web2sms_abandoned_cart` WHERE userId = %d AND smsRetry = %s ', $userId, 0)
+                    );
+
+        if (count( $results ) === 0 ) {
+            if ( '' !== $cart_info_meta && '{"cart":[]}' !== $cart_info_meta && '""' !== $cart_info_meta ) {
+                $cart_info_meta         = array();
+                $cart_info_meta['cart'] = WC()->session->cart;
+                $cart_info_meta         = wp_json_encode( $cart_info_meta );
+                $cartInfo = $cart_info_meta;
+                $checkoutLink = WC()->cart->get_checkout_url();
+                $wpdb->query( 
+                    $wpdb->prepare(
+                        'INSERT INTO `' . $wpdb->prefix . 'web2sms_abandoned_cart` ( userId, userType, userInfo, cartInfo, checkoutLink, smsRetry, createdAt, expireAt ) VALUES ( %d, %s, %s, %s, %s, %d, %s , %s )',
+                        $userId,
+                        $userType,
+                        $userInfo,
+                        $cartInfo,
+                        $checkoutLink,
+                        0,
+                        date( 'Y-m-d h:i:s', current_time( $currentTime )),
+                        date( 'Y-m-d h:i:s', current_time( $currentTime + (2 * 24 * 60 * 60 ) ))                        
+                    )
+                );
+                $abandoned_cart_id = $wpdb->insert_id;
+                setLog("Insert id : ".$abandoned_cart_id." -> ".rand(0,100)."\n");
+            }
+        } else {
+            $updated_cart_info         = array();
+            $updated_cart_info['cart'] = WC()->session->cart;
+            $updated_cart_info         = wp_json_encode( $updated_cart_info );
+            $cartInfo = $updated_cart_info;
+
+            setLog("Updateed -> BEFORE | ".print_r($cartInfo, true).rand(0,100)."\n");
+            $wpdb->query( 
+                $wpdb->prepare(
+                    'UPDATE `' . $wpdb->prefix . 'web2sms_abandoned_cart` SET userInfo = %s , cartInfo = %s , updatedAt = %s WHERE userId = %d ',
+                    $userInfo,
+                    $cartInfo,
+                    date( 'Y-m-d h:i:s', current_time( 'timestamp' )),
+                    $userId                       
+                )
+            );
+            
+            setLog("Updateed -> AFTER | ".print_r($cartInfo, true).rand(0,100)."\n");
+        }
+
+        
+        
+        // setLog("user id : ".$userId." -> User meta : ".print_r($cart_info_meta, true)." -> ".rand(0,100)."\n");
+
+    } else {
+        $userType = "guest";
+    }
+    setLog("- web2sms -> store abandoned cart  -> Current_time : ".$currentTime." &  Cut off time : ".$cart_cut_off_time." Sec -> user Type : ".$userType.rand(0,100)."\n");
+}
+
+function web2sms_store_cart(){
+    setLog("---- web2sms --- store cart ----".rand(0,100)."\n");
+}
+
+function web2sms_cart_item_removed() {
+    setLog("---- web2sms --- art item removed ----".rand(0,100)."\n");
+}
+
+function web2sms_cart_item_restored() {
+    setLog("---- web2sms --- restore cart ----".rand(0,100)."\n");
+}
+
+function web2sms_quantity_update_cart() {
+    setLog("---- web2sms --- quantity update cart ----".rand(0,100)."\n");
+}
+
+/**
+ * There is lot's of time whitch totalsum is calculated
+ * When Cart is Zero , is not called
+ */
+function web2sms_calculate_totals_cart(){
+    setLog("---- web2sms --- calculate totals cart ----".rand(0,100)."\n");
+}
+
+function web2sms_checkout_validation_cart(){
+    setLog("---- web2sms --- checkout validation cart ----".rand(0,100)."\n");
+}
