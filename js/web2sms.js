@@ -130,7 +130,14 @@ function smsCalculation(str, isStandard) {
         tb_show("Mobile view", "../wp-content/plugins/netopia-payments-payment-gateway/src/devicesViewCellPhone.php?TB_iframe=true&width=400&height=770");
     });
 
-    toastr.success('<b>SMS length</b>: ~'+str.length + '<br><b>Standard Text</b> : ' + isStandard + '<br><b>SMS nr</b> : ~' + smsNr);
+    var smsLengthNote = "";
+    if(isStandard) {
+        smsLengthNote = "(Max 160 character per SMS)";
+    } else {
+        smsLengthNote = "(Max 70 character per SMS)";
+    }
+
+    toastr.success('<b>SMS length</b>: ~'+ str.length + '<br><b>Standard Text</b> : ' + isStandard + '<br><b>SMS nr</b> : ~' + smsNr + '<br>'+ smsLengthNote +'</br>');
     
 }
 
