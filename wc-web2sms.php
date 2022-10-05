@@ -546,10 +546,11 @@ function web2sms_store_abandoned_cart() {
          * Verify if GUEST cart is already monitoring
          */
         $results = $wpdb->get_results( 
-            $wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'web2sms_abandoned_cart` WHERE sessionId = %s AND userId = %d AND smsRetry = %s ', $sessionId, $userId, 0)
+            $wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'web2sms_abandoned_cart` WHERE sessionId = %s AND smsRetry = %s ', $sessionId, 0)
         );
 
         if (count( $results ) === 0 ) {
+            if ( '' !== $cartData && '{"cart":[]}' !== $cartData && '""' !== $cartData ) {
                 $userInfo = '{}';
                 $wpdb->query( 
                     $wpdb->prepare(
@@ -567,20 +568,24 @@ function web2sms_store_abandoned_cart() {
                 );
                 $abandoned_cart_id = $wpdb->insert_id;
                 setLog("--- GUEST --- Insert id : ".$abandoned_cart_id." -> ".rand(0,100)."\n");
+            }
         } else {
             $updatedCartInfo         = array();
             $updatedCartInfo['cart'] = WC()->session->cart;
+
+            setLog("--- GUEST --- Cart KEY  : ".print_r($updatedCartInfo['cart'], true)." -> ".rand(0,100)."\n");
+
             $cartInfo                  = wp_json_encode( $updatedCartInfo );
-            $userInfo = '{updated:true}';
+            $userInfo = '{updated:truexx}';
             
             $wpdb->query( 
                 $wpdb->prepare(
-                    'UPDATE `' . $wpdb->prefix . 'web2sms_abandoned_cart` SET userInfo = %s , cartInfo = %s , updatedAt = %s WHERE sessionId = %d AND userId = %d',
+                    'UPDATE `' . $wpdb->prefix . 'web2sms_abandoned_cart` SET userInfo = %s , userId = %d , cartInfo = %s , updatedAt = %s WHERE sessionId = %s ',
                     $userInfo,
+                    $userId,
                     $cartInfo,
                     date( 'Y-m-d h:i:s', current_time( 'timestamp' )),
-                    $sessionId,
-                    $userId                       
+                    $sessionId                       
                 )
             );
         }
