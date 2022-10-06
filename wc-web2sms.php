@@ -455,7 +455,8 @@ add_action( 'woocommerce_calculate_totals', 'web2sms_calculate_totals_cart');
 add_action( 'woocommerce_calculate_totals', 'web2sms_store_abandoned_cart');
 
 add_action( 'woocommerce_after_checkout_validation', 'web2sms_checkout_validation_cart');
-add_action( 'woocommerce_after_checkout_validation', 'web2sms_store_abandoned_cart');
+add_action( 'woocommerce_checkout_order_processed', 'web2sms_checkout_order_processed');
+// do_action( 'web2sms_checkout_validation_cart');
 
 
 /**
@@ -572,16 +573,11 @@ function web2sms_store_abandoned_cart() {
         } else {
             $updatedCartInfo         = array();
             $updatedCartInfo['cart'] = WC()->session->cart;
-
-            setLog("--- GUEST --- Cart KEY  : ".print_r($updatedCartInfo['cart'], true)." -> ".rand(0,100)."\n");
-
             $cartInfo                  = wp_json_encode( $updatedCartInfo );
-            $userInfo = '{updated:truexx}';
             
             $wpdb->query( 
                 $wpdb->prepare(
-                    'UPDATE `' . $wpdb->prefix . 'web2sms_abandoned_cart` SET userInfo = %s , userId = %d , cartInfo = %s , updatedAt = %s WHERE sessionId = %s ',
-                    $userInfo,
+                    'UPDATE `' . $wpdb->prefix . 'web2sms_abandoned_cart` SET userId = %d , cartInfo = %s , updatedAt = %s WHERE sessionId = %s ',
                     $userId,
                     $cartInfo,
                     date( 'Y-m-d h:i:s', current_time( 'timestamp' )),
@@ -633,6 +629,38 @@ function web2sms_calculate_totals_cart(){
 }
 
 //Temp method #6
-function web2sms_checkout_validation_cart(){
-    setLog("---- web2sms --- checkout validation cart ----".rand(0,100)."\n");
+function web2sms_checkout_validation_cart($checkouArg){
+    global $wpdb;
+    $sessionId   = WC()->session->get_customer_id();
+
+    $userInfo['nickname']           = '';
+    $userInfo['billing_first_name'] = $checkouArg['billing_first_name'];
+    $userInfo['billing_last_name']  = $checkouArg['billing_last_name'];
+    $userInfo['billing_email']      = $checkouArg['billing_email'];
+    $userInfo['billing_phone']      = $checkouArg['billing_phone'];
+    $userInfo = wp_json_encode($userInfo);
+
+    $wpdb->query( 
+        $wpdb->prepare(
+            'UPDATE `' . $wpdb->prefix . 'web2sms_abandoned_cart` SET userInfo = %s , cartStatus = %d , updatedAt = %s WHERE sessionId = %s ',
+            $userInfo,
+            1,
+            date( 'Y-m-d h:i:s', current_time( 'timestamp' )),
+            $sessionId                       
+        )
+    );
+}
+
+function web2sms_checkout_order_processed($orderId){
+    global $wpdb;
+    $sessionId   = WC()->session->get_customer_id();
+    
+    $wpdb->query( 
+        $wpdb->prepare(
+            'UPDATE `' . $wpdb->prefix . 'web2sms_abandoned_cart` SET orderId = %d , updatedAt = %s WHERE sessionId = %s ',
+            $orderId,
+            date( 'Y-m-d h:i:s', current_time( 'timestamp' )),
+            $sessionId                       
+        )
+    );
 }

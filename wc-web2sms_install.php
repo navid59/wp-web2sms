@@ -12,6 +12,7 @@
         id mediumint(9) NOT NULL AUTO_INCREMENT,
         sessionId varchar(50) NULL,
         userId int(5) NOT NULL,
+        orderId int(5) NULL,
         userType varchar(50) NULL,
         userInfo TEXT NULL,
         cartInfo TEXT NOT NULL,
