@@ -82,6 +82,18 @@ jQuery(document).ready(function(){
         isStandard = isStandardTxt(pendingStr);
         smsCalculation(pendingStr, isStandard);
     });
+    
+    jQuery("#btn_reminder").click(function(){
+        pendingStr = jQuery('#wc_settings_web2sms_reminder_text').val();
+        if(isEmpty(pendingStr)) {
+            console.log('Is empty');
+            toastr.error('Please, enter a SMS content for Abandoned cart!', 'Error!');
+            return false;
+        }
+        
+        isStandard = isStandardTxt(pendingStr);
+        smsCalculation(pendingStr, isStandard);
+    });
 
     jQuery("#show_documention").click(function(){
         web2smsDocumention();

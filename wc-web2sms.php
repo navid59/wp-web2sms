@@ -59,12 +59,13 @@ class WC_Settings_Web2sms {
     public static function get_settings() {
         $settings = array(
             'section_title' => array(
-                    'name'     => 'Web2sms Section',
+                    'name'     => 'Ce este Web2sms',
                     'type'     => 'title',
-                    'desc'     => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                   Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                   It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                                   It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.<br><br> and more recently with desktop publishing software <a href="#" id="show_documention">View my inline content!</a>like Aldus PageMaker including versions of Lorem Ipsum.',
+                    'desc'     => 'Platforma web2sms a fost creata de catre NETOPIA Payments si a fost special conceputa pentru a asigura fexibilitate.
+                    Nu exista cost suplimentar de licentiere, iar platofrma este compatbila cu orice sistem de operare.
+                    Avand conectare directa cu toti operatorii GSM din ROMANIA, web2sms livreaza in permanenta beneficii precum: incredere si performanta, un mediu sigur de tranzactionare si acces simplu din orice web browser.
+                    Punem un accent deosebit pe transparenta, tarifele noastre reflectand numai costul SMS-urilor livrate catre operatori.
+                    Pentru mai multe informaţii, vă rugăm să ne contactaţi la echipa de <a href="mailto:contact@web2sms.ro">suport</a>.<br><br> Daca doresti trimiterea mesajelor de informare catre clientii tai, poti activa plugin-ul si setezi setarii. <a href="#" id="show_documention">Vazi documentație!</a>.',
                     'id'       => 'wc_settings_tab_web2sms_section_title',
                     'css'       => '',
             ),
@@ -78,27 +79,30 @@ class WC_Settings_Web2sms {
 			),
             'apikey' => array(
                     'name'      => 'Api key',
-                    'desc_tip'  => 'Your api key from web2sms.ro',
+                    'placeholder' => 'Cheia unica asociata contului web2sms.',
+                    'desc_tip'  => 'Api key de la web2sms.ro',
                     'type'      => 'text',
-                    'desc'      => 'Copy your api key from <a href="https://www.web2sms.ro/" target="_blank">www.web2sms.ro</a>',
+                    'desc'      => 'API cheia, se poate accesa din meniul Dashboard, in <a href="https://www.web2sms.ro/" target="_blank">www.web2sms.ro</a>',
                     'id'        => 'wc_settings_web2sms_apikey',
                     'css'       => '',
             ),
             'secretkey' => array(
                     'name'      => 'Secret key',
-                    'desc_tip'  => 'Your secret key from web2sms.ro',
+                    'placeholder' => 'Cheia secreta asociata contului web2sms.',
+                    'desc_tip'  => 'Secret key de la web2sms.ro',
                     'type'      => 'text',
-                    'desc'      => 'Copy your secret key from <a href="https://www.web2sms.ro/" target="_blank">www.web2sms.ro</a>',
+                    'desc'      => 'Cheia secreta, se poate accesa din meniul Dashboard, in <a href="https://www.web2sms.ro/" target="_blank">www.web2sms.ro</a>',
                     'id'        => 'wc_settings_web2sms_secretkey',
                     'css'       => '',
             ),
             'pending_sms_content' => array(
-                    'name'      => 'Pending text',
-                    'desc_tip'  => 'The sms text, what client will recive by sms on order status pending',
-                    'type'      => 'textarea',
-                    'desc'      => 'Write your sms text for pending status',
-                    'id'        => 'wc_settings_web2sms_pending_text',
-                    'css'       => '',
+                    'name'        => 'Pending text',
+                    'placeholder' => '',
+                    'desc_tip'    => 'The sms text, what client will recive by sms on order status pending',
+                    'type'        => 'textarea',
+                    'desc'        => 'Write your sms text for pending status',
+                    'id'          => 'wc_settings_web2sms_pending_text',
+                    'css'         => '',
             ),
             'pending' => array(
                     'name'		 => 'Pending',
@@ -110,16 +114,17 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'onhold_sms_content' => array(
-                    'name'      => 'On-Hold text',
-                    'desc_tip'  => 'The sms text, what client will recive by sms on order status On-Hold',
-                    'type'      => 'textarea',
-                    'desc'      => 'Write your sms text for On-Hold status',
-                    'id'        => 'wc_settings_web2sms_on-hold_text',
-                    'css'       => '',
+                    'name'        => 'On-Hold text',
+                    'placeholder' => '',
+                    'desc_tip'    => 'The sms text, what client will recive by sms on order status On-Hold',
+                    'type'        => 'textarea',
+                    'desc'        => 'Write your sms text for On-Hold status',
+                    'id'          => 'wc_settings_web2sms_on-hold_text',
+                    'css'         => '',
             ),
             'onhold' => array(
                     'name'		=> 'On-Hold',
-                    'desc_tip'   => '<button type="button" id="btn_onhold" class="btn btn-lg btn-primary">See how looks</button>',
+                    'desc_tip'  => '<button type="button" id="btn_onhold" class="btn btn-lg btn-primary">See how looks</button>',
                     'type'		=> 'checkbox',
                     'desc'      => 'Set it as checked if you want send SMS on On-Hold order',
                     'id'        => 'wc_settings_web2sms_on-hold_status',
@@ -127,12 +132,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'failed_sms_content' => array(
-                    'name'      => 'Faild text',
-                    'desc_tip'  => 'The sms text, what client will recive by sms on order status Faild',
-                    'type'      => 'textarea',
-                    'desc'      => 'Write your sms text for Faild status',
-                    'id'        => 'wc_settings_web2sms_failed_text',
-                    'css'       => '',
+                    'name'        => 'Faild text',
+                    'placeholder' => '',
+                    'desc_tip'    => 'The sms text, what client will recive by sms on order status Faild',
+                    'type'        => 'textarea',
+                    'desc'        => 'Write your sms text for Faild status',
+                    'id'          => 'wc_settings_web2sms_failed_text',
+                    'css'         => '',
             ),'failed' => array(
                     'name'		=> 'Faild',
                     'desc_tip'   => '<button type="button" id="btn_failed" class="btn btn-lg btn-primary">See how looks</button>',
@@ -143,12 +149,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'processing_sms_content' => array(
-                    'name'      => 'Processing text',
-                    'desc_tip'  => 'The sms text, what client will recive by sms on order status processing',
-                    'type'      => 'textarea',
-                    'desc'      => 'Write your sms text for Processing status',
-                    'id'        => 'wc_settings_web2sms_processing_text',
-                    'css'       => '',
+                    'name'        => 'Processing text',
+                    'placeholder' => '',
+                    'desc_tip'    => 'The sms text, what client will recive by sms on order status processing',
+                    'type'        => 'textarea',
+                    'desc'        => 'Write your sms text for Processing status',
+                    'id'          => 'wc_settings_web2sms_processing_text',
+                    'css'         => '',
             ),
             'processing' => array(
                     'name'		=> 'Processing',
@@ -160,13 +167,14 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'cancelled_sms_content' => array(
-                    'name'      => 'Cancelled text',
-                    'desc_tip'  => 'The sms text, what client will recive by sms on order status Cancelled',
-                    'type'		=> 'textarea',
-                    'desc'      => 'Write your sms text for Cancelled order',
-                    'id'        => 'wc_settings_web2sms_cancelled_text',
-                    'default'	=> 'no',
-                    'css'       => '',
+                    'name'        => 'Cancelled text',
+                    'placeholder' => '',
+                    'desc_tip'    => 'The sms text, what client will recive by sms on order status Cancelled',
+                    'type'		  => 'textarea',
+                    'desc'        => 'Write your sms text for Cancelled order',
+                    'id'          => 'wc_settings_web2sms_cancelled_text',
+                    'default'	  => 'no',
+                    'css'         => '',
 			),
             'cancelled' => array(
                     'name'		=> 'Cancelled',
@@ -178,12 +186,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'completed_sms_content' => array(
-                    'name'      => 'Completed text',
-                    'desc_tip'  => 'The sms text, what client will recive by sms on order status Completed',
-                    'type'      => 'textarea',
-                    'desc'      => 'Write your sms text for Completed status',
-                    'id'        => 'wc_settings_web2sms_completed_text',
-                    'css'       => '',
+                    'name'        => 'Completed text',
+                    'placeholder' => '',
+                    'desc_tip'    => 'The sms text, what client will recive by sms on order status Completed',
+                    'type'        => 'textarea',
+                    'desc'        => 'Write your sms text for Completed status',
+                    'id'          => 'wc_settings_web2sms_completed_text',
+                    'css'         => '',
             ),
             'completed' => array(
                     'name'		=> 'Completed',
@@ -195,12 +204,13 @@ class WC_Settings_Web2sms {
                     'css'       => '',
             ),
             'refunded_sms_content' => array(
-                    'name'      => 'Refunded text',
-                    'desc_tip'  => 'The sms text, what client will recive by sms on order status Refunded',
-                    'type'      => 'textarea',
-                    'desc'      => 'Write your sms text for Refunded status',
-                    'id'        => 'wc_settings_web2sms_refunded_text',
-                    'css'       => '',
+                    'name'        => 'Refunded text',
+                    'placeholder' => '',
+                    'desc_tip'    => 'The sms text, what client will recive by sms on order status Refunded',
+                    'type'        => 'textarea',
+                    'desc'        => 'Write your sms text for Refunded status',
+                    'id'          => 'wc_settings_web2sms_refunded_text',
+                    'css'         => '',
             ),
             'refunded' => array(
                     'name'		=> 'Refunded',
@@ -211,9 +221,67 @@ class WC_Settings_Web2sms {
                     'default'	=> 'no',
                     'css'       => '',
             ),
-            'section_end' => array(
+            'setting_section_end' => array(
+                'type' => 'sectionend',
+                'id' => 'wc_settings_tab_web2sms_section_title'
+            ),
+            'abandoned_cart' => array(
+                'title' => 'Abandoned cart',
+                'type'  => 'title',
+                'desc'  => 'Cosurile de cumparaturi abandonate apar in momentul in care un potential client incepe un proces de achizitie pentru o comanda online, dar renunta la aceasta inainte de finalizare.
+                Orice produs adaugat in cart care insa nu ajunge sa fie cumparat este considerat un produs abandonat de catre vizitator.
+                Prin setari de mai jos aveti posibilitatea sa gestionezi cu ajutorul trimite un SMS ca aducere aminte.',
+                'id' => 'wc_settings_tab_web2sms_section_abandoned_cart',
+            ),
+            'intervalTime' => array(
+                'name'      => 'Interval Time',
+                'desc_tip'  => 'Send reminder after XX hour',
+                'default'   => '5',
+                'type'      => 'number',
+                'custom_attributes' => array(
+                    'min'  => 1,
+                    'step' => 1,
+                    'max'  => 48,
+                ),
+                'desc'      => 'An interval time to send reminder after last Cart update time',
+                'id'        => 'wc_settings_web2sms_nterval_time',
+                'css'       => 'width:100px;',
+            ),
+            'smsRetry' => array(
+                'name'      => 'SMS Retry',
+                'desc_tip'  => 'Nr of sending reminder SMS',
+                'default'   => '2',
+                'type'      => 'number',
+                'custom_attributes' => array(
+                    'min'  => 1,
+                    'step' => 1,
+                    'max'  => 10,
+                ),
+                'desc'      => 'Nr of sending reminder SMS',
+                'id'        => 'wc_settings_web2sms_sms_retry',
+                'css'       => 'width:100px;',
+            ),
+            'reminder_sms_content' => array(
+                'name'        => 'reminder text',
+                'placeholder' => 'Salut! nu uita ca ai ceva in cosul tu, dar nu ai finazlizat inca!',
+                'desc_tip'    => 'The sms text, what client will recive by sms on order status Refunded',
+                'type'        => 'textarea',
+                'desc'        => 'Write your sms text for Abandoned cart',
+                'id'          => 'wc_settings_web2sms_reminder_text',
+                'css'         => '',
+            ),
+            'reminder' => array(
+                'name'		=> 'reminder',
+                'desc_tip'  => '<button type="button" id="btn_reminder" class="btn btn-lg btn-primary">See how looks</button>',
+                'type'		=> 'checkbox',
+                'desc'      => 'Set it as checked if you want send SMS on Abandoned cart',
+                'id'        => 'wc_settings_web2sms_reminder',
+                'default'	=> 'no',
+                'css'       => '',
+            ),
+            'reminder_section_end' => array(
                  'type' => 'sectionend',
-                 'id' => 'wc_settings_tab_web2sms_section_end'
+                 'id' => 'wc_settings_tab_web2sms_section_abandoned_cart'
             )
         );
 
@@ -402,9 +470,9 @@ function sms_content_calculation() {
  */
 add_filter( 'cron_schedules', 'web2sms_cart_notify' );
 function web2sms_cart_notify( $schedules ) {
-    $schedules['every_five_minutes'] = array(
+    $schedules['schedule_time'] = array(
             'interval'  => 60 * 1,
-            'display'   => __( 'Every 5 Minutes', 'textdomain' )
+            'display'   => 'Web2sms reminder cron'
     );
     return $schedules;
 }
@@ -413,25 +481,56 @@ function web2sms_cart_notify( $schedules ) {
  * Schedule an action if it's not already scheduled
  */
 if ( ! wp_next_scheduled( 'web2sms_cart_notify' ) ) {
-    wp_schedule_event( time(), 'every_five_minutes', 'web2sms_cart_notify' );
+    wp_schedule_event( time(), 'schedule_time', 'web2sms_cart_notify' );
 }
 
 /**
  * Hook into that action that'll fire every five minutes 
  */
-add_action( 'web2sms_cart_notify', 'every_five_minutes_event_func' );
-function every_five_minutes_event_func() {
-    global $woocommerce;
-    // do something here you can perform anything
-    setLog("---- WooComerce --- ---- cart recovery ---- ----".rand(0,100)."\n");
-    setLog("---- Notify URL ---- 3 ---- ".rand(0,100)." ---- ".print_r(WC()->api_request_url( 'netopiapayments' ), true)."\n");
+add_action( 'web2sms_cart_notify', 'web2smsReminder' );
+function web2smsReminder() {
+    global $wpdb;
+    $timeAgo = 5 * 60; // Time base on minutes
+    $tryNr   = 2;
+    
+    $intervalTime = date("Y-m-d H:i:s", strtotime("-$timeAgo minutes"));
+
+    /**
+     * Get list of abonded cart to send SMS
+     */
+    $results = $wpdb->get_results( 
+        $wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'web2sms_abandoned_cart` WHERE userInfo != %s AND smsRetry < %d AND updatedAt < %s ', '{}', $tryNr, $intervalTime)
+    );
+
+    foreach ($results as $abandonedCart) {
+        # Verify info
+        $userInfo = json_decode($abandonedCart->userInfo);
+        // setLog("---- web2sms --- User Info ----".print_r($userInfo, true)."---".rand(0,100)."\n");
+        if(!empty($userInfo->billing_phone)) {
+            if(isValidPhoneNumber($userInfo->billing_phone)) {
+                $cartInfo = json_decode($abandonedCart->cartInfo);
+                setLog("---- web2sms --- Cart Info ----".print_r($cartInfo, true)."---".rand(0,100)."\n");
+                # SEND SMS
+            } else {
+                setLog("---- abandoned Cart with Phone number : ".print_r($userInfo->billing_phone, true)."--- Is Not valid Phone Number --- ".rand(0,100)."\n");
+            }
+        } else {
+            setLog("---- abandoned Cart with Phone number : ".print_r($userInfo->billing_phone, true)."--- HAs no Phone Number --- ".rand(0,100)."\n");
+        }
+    }
+
+    setLog("---- abandoned Cart ----- --- ".rand(0,100)."\n");
 }
 
 /**
  * Validate mobil number before send SMS
  */
-function validateTelNumber() {
-
+function isValidPhoneNumber($phone_number) {
+    if(preg_match('/^[0,7]{2}[0-9]{8}+$/', $phone_number)) {
+        return true;
+    } else{
+        return false;
+    }
 }
 
 /**
@@ -466,7 +565,6 @@ function web2sms_store_abandoned_cart() {
     global $wpdb,$woocommerce;
 	$currentTime = current_time( 'timestamp' );
     
-    $cart_cut_off_time = 60 * 1; // 60 Sec
     if ( is_user_logged_in() ) {
         $userType  = "registered";
         /**
@@ -496,7 +594,8 @@ function web2sms_store_abandoned_cart() {
                 $checkoutLink = WC()->cart->get_checkout_url();
                 $wpdb->query( 
                     $wpdb->prepare(
-                        'INSERT INTO `' . $wpdb->prefix . 'web2sms_abandoned_cart` ( userId, userType, userInfo, cartInfo, checkoutLink, smsRetry, createdAt, expireAt ) VALUES ( %d, %s, %s, %s, %s, %d, %s , %s )',
+                        'INSERT INTO `' . $wpdb->prefix . 'web2sms_abandoned_cart` ( sessionId, userId, userType, userInfo, cartInfo, checkoutLink, smsRetry, createdAt, expireAt ) VALUES ( %d, %d, %s, %s, %s, %s, %d, %s , %s )',
+                        $userId,
                         $userId,
                         $userType,
                         $userInfo,
@@ -628,7 +727,9 @@ function web2sms_calculate_totals_cart(){
     setLog("---- web2sms --- calculate totals cart ----".rand(0,100)."\n");
 }
 
-//Temp method #6
+/**
+ * Checkout validation cart
+ */
 function web2sms_checkout_validation_cart($checkouArg){
     global $wpdb;
     $sessionId   = WC()->session->get_customer_id();
@@ -651,6 +752,9 @@ function web2sms_checkout_validation_cart($checkouArg){
     );
 }
 
+/**
+ * Checkout validation order processed
+ */
 function web2sms_checkout_order_processed($orderId){
     global $wpdb;
     $sessionId   = WC()->session->get_customer_id();
