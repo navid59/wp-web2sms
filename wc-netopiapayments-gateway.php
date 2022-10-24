@@ -4,7 +4,8 @@ class netopiapayments extends WC_Payment_Gateway {
 	function __construct() {
 		$this->id = "netopiapayments";
 		$this->method_title = __( "NETOPIA Payments", 'netopiapayments' );
-		$this->method_description = __( "NETOPIA Payments Payment Gateway Plug-in for WooCommerce", 'netopiapayments' );
+		$this->method_description  = __( "NETOPIA Payments Payment Gateway Plug-in for WooCommerce<br>", 'netopiapayments' );
+		$this->method_description .= __( "Pentru mai multe informati <a href='#' id='show_payment_card_documention'>Vazi documentație!</a>.", 'netopiapayments' );
 		$this->title = __( "NETOPIA", 'netopiapayments' );
 		$this->icon = NTP_PLUGIN_DIR . 'img/netopiapayments.gif';
 		$this->has_fields = true;
@@ -44,7 +45,7 @@ class netopiapayments extends WC_Payment_Gateway {
 
 	// Build the administration fields for this specific Gateway
 	public function init_form_fields() {
-		$this->form_fields = array(			
+		$this->form_fields = array(
 			'enabled' => array(
 				'title'		=> __( 'Enable / Disable', 'netopiapayments' ),
 				'label'		=> __( 'Enable this payment gateway', 'netopiapayments' ),

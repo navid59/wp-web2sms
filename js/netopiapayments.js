@@ -17,6 +17,15 @@ function notifyHandle(chosen_file,type,elm){
         return true;
     }
 }
+
+function paymentCardDocumention() {
+    tb_show("Documention", "../wp-content/plugins/netopia-payments-payment-gateway/src/paymentCardDocumention.php?TB_iframe=true&width=700&height=770");
+}
+
+jQuery("#show_payment_card_documention").click(function(){
+    paymentCardDocumention();
+});
+
 $('#woocommerce_netopiapayments_live_cer').on('change', function () {
     notifyHandle($(this)[0].files[0],'cer',this);
 });
@@ -31,3 +40,5 @@ $('#woocommerce_netopiapayments_sandbox_cer').on('change', function () {
 $('#woocommerce_netopiapayments_sandbox_key').on('change', function(){
     notifyHandle($(this)[0].files[0],'key',this);
 })
+
+
