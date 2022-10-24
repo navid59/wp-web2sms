@@ -65,14 +65,15 @@ class WC_Settings_Web2sms {
                     Nu exista cost suplimentar de licentiere, iar platofrma este compatbila cu orice sistem de operare.
                     Avand conectare directa cu toti operatorii GSM din ROMANIA, web2sms livreaza in permanenta beneficii precum: incredere si performanta, un mediu sigur de tranzactionare si acces simplu din orice web browser.
                     Punem un accent deosebit pe transparenta, tarifele noastre reflectand numai costul SMS-urilor livrate catre operatori.
-                    Pentru mai multe informaţii, vă rugăm să ne contactaţi la echipa de <a href="mailto:contact@web2sms.ro">suport</a>.<br><br> Daca doresti trimiterea mesajelor de informare catre clientii tai, poti activa plugin-ul si setezi setarii. <a href="#" id="show_documention">Vazi documentație!</a>.',
+                    Pentru mai multe informaţii, vă rugăm să ne contactaţi la echipa de <a href="mailto:contact@web2sms.ro">suport</a>.<br><br> Daca doresti trimiterea mesajelor de informare catre clientii tai, poti activa plugin-ul si setezi setarii de mai jos.
+                    Pentru mai multe informati <a href="#" id="show_documention">Vazi documentație!</a>.',
                     'id'       => 'wc_settings_tab_web2sms_section_title',
                     'css'       => '',
             ),
             'active' => array(
                     'name'		=> 'Enable / Disable',
                     'type'		=> 'checkbox',
-                    'desc'      => 'Set it as checked if you want to use the SMS Option',
+                    'desc'      => 'Bifeaza, daca doresti trimiterea mesajelor de informare catre clientii.',
                     'default'	=> 'no',
                     'id'        => 'wc_settings_web2sms_active',
                     'css'       => '',
@@ -100,15 +101,15 @@ class WC_Settings_Web2sms {
                     'placeholder' => '',
                     'desc_tip'    => 'The sms text, what client will recive by sms on order status pending',
                     'type'        => 'textarea',
-                    'desc'        => 'Write your sms text for pending status',
+                    'desc'        => 'Scrie textul pentru SMS-ul tău cand camanda este in stare "Pending"',
                     'id'          => 'wc_settings_web2sms_pending_text',
                     'css'         => '',
             ),
             'pending' => array(
                     'name'		 => 'Pending',
-                    'desc_tip'   => '<button type="button" id="btn_pending" class="btn btn-lg btn-primary">See how looks</button>',
+                    'desc_tip'   => '<button type="button" id="btn_pending" class="btn btn-lg btn-primary">vezi cum arate</button>',
                     'type'		 => 'checkbox',
-                    'desc'       => 'Set it as checked if you want send SMS on Pending order',
+                    'desc'       => 'Bifeaza, pentru trimiterea SMS in starea "Pending order".',
                     'id'         => 'wc_settings_web2sms_pending_status',
                     'default'	 => 'no',
                     'css'       => '',
@@ -118,15 +119,15 @@ class WC_Settings_Web2sms {
                     'placeholder' => '',
                     'desc_tip'    => 'The sms text, what client will recive by sms on order status On-Hold',
                     'type'        => 'textarea',
-                    'desc'        => 'Write your sms text for On-Hold status',
+                    'desc'        => 'Scrie textul pentru SMS-ul tău cand camanda este in stare "On-Hold"',
                     'id'          => 'wc_settings_web2sms_on-hold_text',
                     'css'         => '',
             ),
             'onhold' => array(
                     'name'		=> 'On-Hold',
-                    'desc_tip'  => '<button type="button" id="btn_onhold" class="btn btn-lg btn-primary">See how looks</button>',
+                    'desc_tip'  => '<button type="button" id="btn_onhold" class="btn btn-lg btn-primary">vezi cum arate</button>',
                     'type'		=> 'checkbox',
-                    'desc'      => 'Set it as checked if you want send SMS on On-Hold order',
+                    'desc'      => 'Bifeaza, pentru trimiterea SMS in starea "On-Hold order"',
                     'id'        => 'wc_settings_web2sms_on-hold_status',
                     'default'	=> 'no',
                     'css'       => '',
@@ -136,14 +137,14 @@ class WC_Settings_Web2sms {
                     'placeholder' => '',
                     'desc_tip'    => 'The sms text, what client will recive by sms on order status Faild',
                     'type'        => 'textarea',
-                    'desc'        => 'Write your sms text for Faild status',
+                    'desc'        => 'Scrie textul pentru SMS-ul tău cand camanda este in stare "Faild"',
                     'id'          => 'wc_settings_web2sms_failed_text',
                     'css'         => '',
             ),'failed' => array(
                     'name'		=> 'Faild',
-                    'desc_tip'   => '<button type="button" id="btn_failed" class="btn btn-lg btn-primary">See how looks</button>',
+                    'desc_tip'   => '<button type="button" id="btn_failed" class="btn btn-lg btn-primary">vezi cum arate</button>',
                     'type'		=> 'checkbox',
-                    'desc'      => 'Set it as checked if you want send SMS on Faild order',
+                    'desc'      => 'Bifeaza, pentru trimiterea SMS in starea "Faild order"',
                     'id'        => 'wc_settings_web2sms_failed_status',
                     'default'	=> 'no',
                     'css'       => '',
@@ -153,13 +154,13 @@ class WC_Settings_Web2sms {
                     'placeholder' => '',
                     'desc_tip'    => 'The sms text, what client will recive by sms on order status processing',
                     'type'        => 'textarea',
-                    'desc'        => 'Write your sms text for Processing status',
+                    'desc'        => 'Scrie textul pentru SMS-ul tău cand camanda este in stare "Processing".',
                     'id'          => 'wc_settings_web2sms_processing_text',
                     'css'         => '',
             ),
             'processing' => array(
                     'name'		=> 'Processing',
-                    'desc_tip'   => '<button type="button" id="btn_processing" class="btn btn-lg btn-primary">See how looks</button>',
+                    'desc_tip'   => '<button type="button" id="btn_processing" class="btn btn-lg btn-primary">vezi cum arate</button>',
                     'type'		=> 'checkbox',
                     'desc'      => 'Set it as checked if you want send SMS on Processing order',
                     'id'        => 'wc_settings_web2sms_processing_status',
@@ -171,16 +172,16 @@ class WC_Settings_Web2sms {
                     'placeholder' => '',
                     'desc_tip'    => 'The sms text, what client will recive by sms on order status Cancelled',
                     'type'		  => 'textarea',
-                    'desc'        => 'Write your sms text for Cancelled order',
+                    'desc'        => 'Scrie textul pentru SMS-ul tău cand camanda este in stare "Cancelled".',
                     'id'          => 'wc_settings_web2sms_cancelled_text',
                     'default'	  => 'no',
                     'css'         => '',
 			),
             'cancelled' => array(
                     'name'		=> 'Cancelled',
-                    'desc_tip'  => '<button type="button" id="btn_cancelled" class="btn btn-lg btn-primary">See how looks</button>',
+                    'desc_tip'  => '<button type="button" id="btn_cancelled" class="btn btn-lg btn-primary">vezi cum arate</button>',
                     'type'		=> 'checkbox',
-                    'desc'      => 'Set it as checked if you want send SMS on Cancelled order',
+                    'desc'      => 'Bifeaza, pentru trimiterea SMS in starea "Cancelled order"',
                     'id'        => 'wc_settings_web2sms_cancelled_status',
                     'default'	=> 'no',
                     'css'       => '',
@@ -188,7 +189,7 @@ class WC_Settings_Web2sms {
             'completed_sms_content' => array(
                     'name'        => 'Completed text',
                     'placeholder' => '',
-                    'desc_tip'    => 'The sms text, what client will recive by sms on order status Completed',
+                    'desc_tip'    => 'Scrie textul pentru SMS-ul tău cand camanda este in stare "Completed"',
                     'type'        => 'textarea',
                     'desc'        => 'Write your sms text for Completed status',
                     'id'          => 'wc_settings_web2sms_completed_text',
@@ -196,9 +197,9 @@ class WC_Settings_Web2sms {
             ),
             'completed' => array(
                     'name'		=> 'Completed',
-                    'desc_tip'  => '<button type="button" id="btn_completed" class="btn btn-lg btn-primary">See how looks</button>',
+                    'desc_tip'  => '<button type="button" id="btn_completed" class="btn btn-lg btn-primary">vezi cum arate</button>',
                     'type'		=> 'checkbox',
-                    'desc'      => 'Set it as checked if you want send SMS on Completed order',
+                    'desc'      => 'Bifeaza, pentru trimiterea SMS in starea "Completed order"',
                     'id'        => 'wc_settings_web2sms_completed_status',
                     'default'	=> 'no',
                     'css'       => '',
@@ -206,7 +207,7 @@ class WC_Settings_Web2sms {
             'refunded_sms_content' => array(
                     'name'        => 'Refunded text',
                     'placeholder' => '',
-                    'desc_tip'    => 'The sms text, what client will recive by sms on order status Refunded',
+                    'desc_tip'    => 'Scrie textul pentru SMS-ul tău cand camanda este in stare "Refunded"',
                     'type'        => 'textarea',
                     'desc'        => 'Write your sms text for Refunded status',
                     'id'          => 'wc_settings_web2sms_refunded_text',
@@ -214,9 +215,9 @@ class WC_Settings_Web2sms {
             ),
             'refunded' => array(
                     'name'		=> 'Refunded',
-                    'desc_tip'  => '<button type="button" id="btn_refunded" class="btn btn-lg btn-primary">See how looks</button>',
+                    'desc_tip'  => '<button type="button" id="btn_refunded" class="btn btn-lg btn-primary">vezi cum arate</button>',
                     'type'		=> 'checkbox',
-                    'desc'      => 'Set it as checked if you want send SMS on Refunded order',
+                    'desc'      => 'Bifeaza, pentru trimiterea SMS in starea "Refunded order"',
                     'id'        => 'wc_settings_web2sms_refunded_status',
                     'default'	=> 'no',
                     'css'       => '',
@@ -244,7 +245,7 @@ class WC_Settings_Web2sms {
                     'max'  => 48,
                 ),
                 'desc'      => 'An interval time to send reminder after last Cart update time',
-                'id'        => 'wc_settings_web2sms_nterval_time',
+                'id'        => 'wc_settings_web2sms_interval_time',
                 'css'       => 'width:100px;',
             ),
             'smsRetry' => array(
@@ -264,17 +265,17 @@ class WC_Settings_Web2sms {
             'reminder_sms_content' => array(
                 'name'        => 'reminder text',
                 'placeholder' => 'Salut! nu uita ca ai ceva in cosul tu, dar nu ai finazlizat inca!',
-                'desc_tip'    => 'The sms text, what client will recive by sms on order status Refunded',
+                'desc_tip'    => 'The sms text, what client will recive by sms on Abandoned cart',
                 'type'        => 'textarea',
-                'desc'        => 'Write your sms text for Abandoned cart',
+                'desc'        => 'Scrie textul pentru SMS-ul tău pentru "Abandoned cart"',
                 'id'          => 'wc_settings_web2sms_reminder_text',
                 'css'         => '',
             ),
             'reminder' => array(
                 'name'		=> 'reminder',
-                'desc_tip'  => '<button type="button" id="btn_reminder" class="btn btn-lg btn-primary">See how looks</button>',
+                'desc_tip'  => '<button type="button" id="btn_reminder" class="btn btn-lg btn-primary">vezi cum arate</button>',
                 'type'		=> 'checkbox',
-                'desc'      => 'Set it as checked if you want send SMS on Abandoned cart',
+                'desc'      => 'Bifeaza, daca doresti sa trimiteti SMS la cosurii "Abandoned".',
                 'id'        => 'wc_settings_web2sms_reminder',
                 'default'	=> 'no',
                 'css'       => '',
@@ -308,6 +309,8 @@ class WC_Settings_Web2sms {
             case 'completed_text':
             case 'refunded_status':
             case 'refunded_text':
+            case 'reminder':
+            case 'reminder_text':
                 return  get_option($this->slug.'_'.$option, array());
                 break;
             default:
@@ -490,16 +493,46 @@ if ( ! wp_next_scheduled( 'web2sms_cart_notify' ) ) {
 add_action( 'web2sms_cart_notify', 'web2smsReminder' );
 function web2smsReminder() {
     global $wpdb;
-    $timeAgo = 5 * 60; // Time base on minutes
-    $tryNr   = 2;
+    $web2sms = new WC_Settings_Web2sms();
+    /** 
+     * Check reminder is set 
+     * */
+    $reminderStatus = $web2sms->getSettingOption('reminder') == 'yes' ? true : false;
+    $reminderContent = $web2sms->getSettingOption('reminder_text');
+    $hasReminderContent = !empty($reminderContent) ? true : false;
+    
+    if(!$reminderStatus || !$hasReminderContent) {
+        return false;
+    }
+
+    $interval_time = get_option($web2sms->slug.'_interval_time', array());
+    if (empty($interval_time) || $interval_time <= 0 ) {
+        return false;
+    }
+
+    $sms_retry = get_option($web2sms->slug.'_sms_retry', array());
+    if (empty($sms_retry) || $sms_retry <= 0 ) {
+        return false;
+    }
+
+    $timeAgo    = $interval_time * 60; // Time base on minutes
+    $expireLimit = $timeAgo + ( 48 * 60 ); // 48H plus Interval time set as Expire limit and base on minutes
     
     $intervalTime = date("Y-m-d H:i:s", strtotime("-$timeAgo minutes"));
+    $expireTime = date("Y-m-d H:i:s", strtotime("-$expireLimit minutes"));
+        
+    /**
+     * Delete tmp Record
+     */
+    $deleteTime = date("Y-m-d H:i:s", strtotime("-1 month")); // a month ago
+    $wpdb->query('DELETE FROM `'. $wpdb->prefix . 'web2sms_abandoned_cart` WHERE `createdAt` < "'. $deleteTime .'"' );
+   
 
     /**
      * Get list of abonded cart to send SMS
      */
     $results = $wpdb->get_results( 
-        $wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'web2sms_abandoned_cart` WHERE userInfo != %s AND smsRetry < %d AND updatedAt < %s ', '{}', $tryNr, $intervalTime)
+        $wpdb->prepare('SELECT * FROM `' . $wpdb->prefix . 'web2sms_abandoned_cart` WHERE userInfo != %s AND smsRetry < %d AND expireAt > %s AND updatedAt < %s ', '{}', $sms_retry, $expireTime, $intervalTime)
     );
 
     foreach ($results as $abandonedCart) {
@@ -519,7 +552,7 @@ function web2smsReminder() {
         }
     }
 
-    setLog("---- abandoned Cart ----- --- ".rand(0,100)."\n");
+    setLog("---- abandoned Cart ----- COUNT : ".count($results)." --- ".rand(0,100)."\n");
 }
 
 /**
