@@ -429,14 +429,8 @@ function sendSMS($smsOrderId, $smsOrderStatus, $smsReciverName, $smsCellPhoneNr,
                         ];
 
     $sendSMS->setRequest();
-    $result = $sendSMS->sendSMS();
-    
-    setLog("---- ******************* ---".rand(0,100)."\n");
-    setLog($result);
-    
-    
-    setLog($sendSMS);
-    setLog("---- ------------------- ---".rand(0,100)."\n");
+    $result = $sendSMS->sendSMS();   
+    return $result[0];
     
 }
 
@@ -515,7 +509,7 @@ function web2smsReminder() {
         return false;
     }
 
-    $timeAgo    = $interval_time * 60; // Time base on minutes
+    $timeAgo    = 1; //$interval_time * 60; // Time base on minutes
     $expireLimit = $timeAgo + ( 48 * 60 ); // 48H plus Interval time set as Expire limit and base on minutes
     
     $intervalTime = date("Y-m-d H:i:s", strtotime("-$timeAgo minutes"));
@@ -538,21 +532,55 @@ function web2smsReminder() {
     foreach ($results as $abandonedCart) {
         # Verify info
         $userInfo = json_decode($abandonedCart->userInfo);
-        // setLog("---- web2sms --- User Info ----".print_r($userInfo, true)."---".rand(0,100)."\n");
         if(!empty($userInfo->billing_phone)) {
             if(isValidPhoneNumber($userInfo->billing_phone)) {
-                $cartInfo = json_decode($abandonedCart->cartInfo);
-                setLog("---- web2sms --- Cart Info ----".print_r($cartInfo, true)."---".rand(0,100)."\n");
-                # SEND SMS
+                // $cartInfo = json_decode($abandonedCart->cartInfo);
+                
+                /**
+                 * Regenerate / Customize SMS Content
+                 */
+                $strFind = array("%name%", "%lastname%", "%email%");
+                $strReplace = array(
+                    $userInfo->billing_first_name,
+                    $userInfo->billing_last_name,
+                    $userInfo->billing_email
+                );
+                
+                $smsContent = str_replace($strFind, $strReplace, $reminderContent);
+                $reminderPhoneNr = $userInfo->billing_phone;
+
+                /**
+                 *  Send SMS as reminder
+                 **/ 
+                if($web2sms->isEnable()) {
+                  $sendSmsResult = sendSMS(null, null, null, $reminderPhoneNr, $smsContent);
+                }
+
+
+                /**
+                 * Update Retry SMS
+                 */
+                $smsResultObj = json_decode($sendSmsResult);
+                if($smsResultObj->status) {
+                    $upgradeNrSMS = $abandonedCart->smsRetry+1;
+                    $wpdb->query( 
+                        $wpdb->prepare(
+                            'UPDATE `' . $wpdb->prefix . 'web2sms_abandoned_cart` SET smsRetry = %d , updatedAt = %s WHERE id = %s ',
+                            (int) $upgradeNrSMS,
+                            date( 'Y-m-d h:i:s', current_time( 'timestamp' )),
+                            $abandonedCart->id                       
+                        )
+                    );
+                }
+                
+                
             } else {
-                setLog("---- abandoned Cart with Phone number : ".print_r($userInfo->billing_phone, true)."--- Is Not valid Phone Number --- ".rand(0,100)."\n");
+                // Not valid Phone Number --- Do nothing
             }
         } else {
-            setLog("---- abandoned Cart with Phone number : ".print_r($userInfo->billing_phone, true)."--- HAs no Phone Number --- ".rand(0,100)."\n");
+            // No Phone Number  --- Do nothing 
         }
     }
-
-    setLog("---- abandoned Cart ----- COUNT : ".count($results)." --- ".rand(0,100)."\n");
 }
 
 /**
@@ -571,24 +599,13 @@ function isValidPhoneNumber($phone_number) {
  */
 
 // Actions to be done on cart update.
-add_action( 'woocommerce_add_to_cart', 'web2sms_store_cart');
 add_action( 'woocommerce_add_to_cart', 'web2sms_store_abandoned_cart');
-
-add_action( 'woocommerce_cart_item_removed', 'web2sms_cart_item_removed');
 add_action( 'woocommerce_cart_item_removed', 'web2sms_store_abandoned_cart');
-
-add_action( 'woocommerce_cart_item_restored', 'web2sms_cart_item_restored');
 add_action( 'woocommerce_cart_item_restored', 'web2sms_store_abandoned_cart');
-
-add_action( 'woocommerce_after_cart_item_quantity_update', 'web2sms_quantity_update_cart');
 add_action( 'woocommerce_after_cart_item_quantity_update', 'web2sms_store_abandoned_cart');
-
-add_action( 'woocommerce_calculate_totals', 'web2sms_calculate_totals_cart');
 add_action( 'woocommerce_calculate_totals', 'web2sms_store_abandoned_cart');
-
 add_action( 'woocommerce_after_checkout_validation', 'web2sms_checkout_validation_cart');
 add_action( 'woocommerce_checkout_order_processed', 'web2sms_checkout_order_processed');
-// do_action( 'web2sms_checkout_validation_cart');
 
 
 /**
@@ -639,8 +656,7 @@ function web2sms_store_abandoned_cart() {
                         date( 'Y-m-d h:i:s', current_time( $currentTime + (2 * 24 * 60 * 60 ) ))                        
                     )
                 );
-                $abandoned_cart_id = $wpdb->insert_id;
-                setLog("Insert id : ".$abandoned_cart_id." -> ".rand(0,100)."\n");
+                // $abandoned_cart_id = $wpdb->insert_id; // The abandoned cart id
             }
         } else {
             $updatedCartInfo         = array();
@@ -673,8 +689,6 @@ function web2sms_store_abandoned_cart() {
         }
         $cartInfo             = wp_json_encode( $cartData );
         
-        setLog("--- GUEST --- Costumer ID  : ".$sessionId." -> ".rand(0,100)."\n");
-
         /**
          * Verify if GUEST cart is already monitoring
          */
@@ -700,7 +714,6 @@ function web2sms_store_abandoned_cart() {
                     )
                 );
                 $abandoned_cart_id = $wpdb->insert_id;
-                setLog("--- GUEST --- Insert id : ".$abandoned_cart_id." -> ".rand(0,100)."\n");
             }
         } else {
             $updatedCartInfo         = array();
@@ -717,7 +730,6 @@ function web2sms_store_abandoned_cart() {
                 )
             );
         }
-
     }
 }
 
@@ -729,35 +741,6 @@ function getCartSession( $session_key ) {
         return false;
     }
     return WC()->session->get( $session_key );
-}
-
-//Temp method #1
-function web2sms_store_cart(){
-    setLog("---- web2sms --- store cart ----".rand(0,100)."\n");
-}
-
-//Temp method #2
-function web2sms_cart_item_removed() {
-    setLog("---- web2sms --- cart item removed ----".rand(0,100)."\n");
-}
-
-//Temp method #3
-function web2sms_cart_item_restored() {
-    setLog("---- web2sms --- restore cart ----".rand(0,100)."\n");
-}
-
-//Temp method #4
-function web2sms_quantity_update_cart() {
-    setLog("---- web2sms --- quantity update cart ----".rand(0,100)."\n");
-}
-
-//Temp method #5
-function web2sms_calculate_totals_cart(){
-    /**
-     * There is lot's of time whitch totalsum is calculated
-     * When Cart is Zero , is not called
-     */
-    setLog("---- web2sms --- calculate totals cart ----".rand(0,100)."\n");
 }
 
 /**
