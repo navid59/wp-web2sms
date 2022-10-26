@@ -419,7 +419,7 @@ function sendSMS($smsOrderId, $smsOrderStatus, $smsReciverName, $smsCellPhoneNr,
     $sendSMS->messages[]  = [
                         'sender'            => null,                                    // who send the SMS             // Optional
                         'recipient'         => $smsRecipient,                           // who receive the SMS          // Mandatory
-                        'body'              => $smsBody.rand(0,1000),                   // The actual text of SMS       // Mandatory
+                        'body'              => $smsBody,                                // The actual text of SMS       // Mandatory
                         'scheduleDatetime'  => null,                                    // Date & Time to send SMS      // Optional
                         'validityDatetime'  => null,                                    // Date & Time of expire SMS    // Optional
                         'callbackUrl'       => '',                                      // Call back                    // Optional    
@@ -713,7 +713,7 @@ function web2sms_store_abandoned_cart() {
         } else {
             $updatedCartInfo         = array();
             $updatedCartInfo['cart'] = WC()->session->cart;
-            $cartInfo                  = wp_json_encode( $updatedCartInfo );
+            $cartInfo                = wp_json_encode( $updatedCartInfo );
             
             $wpdb->query( 
                 $wpdb->prepare(
