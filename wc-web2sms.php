@@ -237,7 +237,7 @@ class WC_Settings_Web2sms {
                 'name'      => 'Interval Time',
                 'desc_tip'  => 'Send reminder after XX hour',
                 'default'   => '5',
-                'type'      => 'hidden',
+                'type'      => 'number',
                 'custom_attributes' => array(
                     'min'  => 1,
                     'step' => 1,
@@ -251,7 +251,7 @@ class WC_Settings_Web2sms {
                 'name'      => 'SMS Retry',
                 'desc_tip'  => 'Nr of sending reminder SMS',
                 'default'   => '1',
-                'type'      => 'number',
+                'type'      => 'hidden',
                 'custom_attributes' => array(
                     'min'  => 1,
                     'step' => 1,
@@ -504,7 +504,7 @@ function web2smsReminder() {
         return false;
     }
 
-    $timeAgo    = 1; //$interval_time * 60; // Time base on minutes
+    $timeAgo     = $interval_time * 60; // Time base on minutes
     $expireLimit = $timeAgo + ( 48 * 60 ); // 48H plus Interval time set as Expire limit and base on minutes
     
     $intervalTime = date("Y-m-d H:i:s", strtotime("-$timeAgo minutes"));
