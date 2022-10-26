@@ -433,11 +433,6 @@ function sendSMS($smsOrderId, $smsOrderStatus, $smsReciverName, $smsCellPhoneNr,
     
 }
 
-/**
- * Thicbox for Popup
- */
-add_thickbox();
-
 
 /**
  * Set Log
