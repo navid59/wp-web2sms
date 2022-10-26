@@ -431,22 +431,11 @@ abstract class Netopia_Payment_Request_Abstract {
      * @throws Exception
      */
     public function encrypt($x509FilePath) {
-        
-    // $cert = file_get_contents($x509FilePath);
-    // echo $cert;
-    // die();
-
-    
-    
-
 	$this->_prepare();
 	$publicKey = openssl_pkey_get_public($x509FilePath);
-
 	if ($publicKey === false) {
 	    $publicKey = openssl_pkey_get_public("file://{$x509FilePath}");
 	}
-
-
 	if ($publicKey === false) {
 	    $errorMessage = "Error while loading X509 public key certificate! Reason:";
 	    $this->outEncData = null;
@@ -456,20 +445,13 @@ abstract class Netopia_Payment_Request_Abstract {
 	    }
 	    throw new Exception($errorMessage, self::ERROR_LOAD_X509_CERTIFICATE);
 	}
-
-   
 	$srcData = $this->_xmlDoc->saveXML();
-    
 	$publicKeys = array(
 	    $publicKey
 	);
 	$encData = null;
 	$envKeys = null;
-    
 	$result = openssl_seal($srcData, $encData, $envKeys, $publicKeys, 'RC4');
-    
-    
-
 	if ($result === false) {
 	    $this->outEncData = null;
 	    $this->outEnvKey = null;
@@ -479,9 +461,6 @@ abstract class Netopia_Payment_Request_Abstract {
 	    }
 	    throw new Exception($errorMessage, self::ERROR_ENCRYPT_DATA);
 	}
-
-
-
 	$this->outEncData = base64_encode($encData);
 	$this->outEnvKey = base64_encode($envKeys[0]);
     }

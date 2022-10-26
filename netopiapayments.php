@@ -29,7 +29,7 @@ function netopiapayments_init() {
 		return $methods;
 	}
 
-    add_action( 'admin_enqueue_scripts', 'netopiapaymentsjs_init' );
+    
 
 	// Add custom action links
 	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'netopia_action_links' );
@@ -48,17 +48,18 @@ function netopiapayments_init() {
         wp_enqueue_script( 'netopiatoastrjs', plugin_dir_url( __FILE__ ) . 'js/toastr.min.js',array(),'2.0' ,true);
         wp_enqueue_style( 'netopiatoastrcss', plugin_dir_url( __FILE__ ) . 'css/toastr.min.css',array(),'2.0' ,false);
     }
+	add_action( 'admin_enqueue_scripts', 'netopiapaymentsjs_init' );
+
+	// Define our Web2sms Option
+	function web2sms_init() {
+		// Include our Web2sms Class
+		include_once( 'wc-web2sms.php' );
+		include_once( 'wc-web2sms_install.php');
+
+		wp_enqueue_script( 'web2smsjs', plugin_dir_url( __FILE__ ) . 'js/web2sms.js',array('jquery'),'1.0.2' ,true);
+		wp_enqueue_script( 'web2smsjstoastr', plugin_dir_url( __FILE__ ) . 'js/toastr.min.js',array(),'1.0.1' ,true);
+		wp_enqueue_style( 'web2smscss', plugin_dir_url( __FILE__ ) . 'css/web2sms.css',array(),'1.0.1' ,false);
+		wp_enqueue_style( 'web2smscsstoastr', plugin_dir_url( __FILE__ ) . 'css/toastr.min.css',array(),'1.0.1' ,false);
+	}
 }
 
-// Define our Web2sms Option
-add_action( 'plugins_loaded', 'web2sms_init', 0 );
-function web2sms_init() {
-	// Include our Web2sms Class
-	include_once( 'wc-web2sms.php' );
-	include_once( 'wc-web2sms_install.php');
-
-	wp_enqueue_script( 'web2smsjs', plugin_dir_url( __FILE__ ) . 'js/web2sms.js',array('jquery'),'1.0.2' ,true);
-	wp_enqueue_script( 'web2smsjstoastr', plugin_dir_url( __FILE__ ) . 'js/toastr.min.js',array(),'1.0.1' ,true);
-	wp_enqueue_style( 'web2smscss', plugin_dir_url( __FILE__ ) . 'css/web2sms.css',array(),'1.0.1' ,false);
-    wp_enqueue_style( 'web2smscsstoastr', plugin_dir_url( __FILE__ ) . 'css/toastr.min.css',array(),'1.0.1' ,false);
-}
