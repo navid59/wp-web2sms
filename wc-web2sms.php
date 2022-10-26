@@ -174,7 +174,7 @@ class WC_Settings_Web2sms {
                     'type'		  => 'textarea',
                     'desc'        => 'Scrie textul SMS-ului care se va trimite atunci cand o comanda este in stare "Cancelled".',
                     'id'          => 'wc_settings_web2sms_cancelled_text',
-                    'default'	  => 'no',
+                    'default'	  => '',
                     'css'         => '',
 			),
             'cancelled' => array(
